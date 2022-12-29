@@ -1,24 +1,23 @@
-const mysql = require("mysql")
+const mysql = require("mysql");
 
 // Create database connection
 const db = mysql.createConnection({
-    host      : "localhost",
-    user      : "root",
-    password  : "",
-    database  : "eddieshop"
-  })
-  
-  // Connect to database 
-  db.connect((err) => {
-    if(err){
-      console.log("Error connecting to database")
-    }
-    console.log("Connected to database")
-    
-})
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "eddieshop",
+});
+
+// Connect to database
+db.connect((err) => {
+  if (err) {
+    console.log("Error connecting to database");
+  }
+  console.log("Connected to database");
+});
 
 // ---------------------------------------------------------------------------------------------CREATE USER TABLE
-let createUsersTable =`
+let createUsersTable = `
     CREATE TABLE IF NOT EXISTS accounts (
         id INT PRIMARY KEY AUTO_INCREMENT,
         firstname VARCHAR(250),
@@ -27,15 +26,15 @@ let createUsersTable =`
         password VARCHAR(250),
         CONSTRAINT uniqeUsername UNIQUE(username)
         )
-`
+`;
 db.query(createUsersTable, (err) => {
-    if(err) {
-    console.log("Error creating accounts table")
-    }
-})
+  if (err) {
+    console.log("Error creating accounts table");
+  }
+});
 
 // ---------------------------------------------------------------------------------------------CREATE PRODUCTS TABLE
-let createProductsTable =`
+let createProductsTable = `
     CREATE TABLE IF NOT EXISTS products (
         id INT PRIMARY KEY AUTO_INCREMENT,
         productname VARCHAR(250),
@@ -45,16 +44,22 @@ let createProductsTable =`
         stock INT,
         CONSTRAINT uniqeProductname UNIQUE(productname)
         )
-`
+`;
 db.query(createProductsTable, (err) => {
-    if(err) {
-    console.log("Error creating products table")
-    }
-})
+  if (err) {
+    console.log("Error creating products table");
+  }
+});
 
 // ---------------------------------------------------------------------------------------------REGISTER USER
-module.exports.registerUser = (firstname, lastname, username, password, callback) => {
-    const query = `
+module.exports.registerUser = (
+  firstname,
+  lastname,
+  username,
+  password,
+  callback
+) => {
+  const query = `
         INSERT INTO accounts (
             firstname,
             lastname,
@@ -63,24 +68,18 @@ module.exports.registerUser = (firstname, lastname, username, password, callback
         )
         VALUES
             (?,?,?,?)
-    `
+    `;
 
-    const values = [
-        firstname,
-        lastname,
-        username,
-        password
-    ]
+  const values = [firstname, lastname, username, password];
 
-    db.query(query, values, callback)
-}
+  db.query(query, values, callback);
+};
 
 // ---------------------------------------------------------------------------------------------GET ALL USERS
-module.exports.getAccounts = (callback) =>{
-    const query = `
+module.exports.getAccounts = (callback) => {
+  const query = `
         SELECT * FROM accounts
-    `
-    
-    db.query(query, callback)
-}
+    `;
 
+  db.query(query, callback);
+};
