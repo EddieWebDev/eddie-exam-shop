@@ -51,8 +51,8 @@ db.query(createProductsTable, (err) => {
   }
 });
 
-// ---------------------------------------------------------------------------------------------REGISTER USER
-module.exports.registerUser = (
+// ---------------------------------------------------------------------------------------------ADD USER
+module.exports.createUser = (
   firstname,
   lastname,
   username,
@@ -82,4 +82,40 @@ module.exports.getAccounts = (callback) => {
     `;
 
   db.query(query, callback);
+};
+
+// ---------------------------------------------------------------------------------------------GET USER BY ID
+module.exports.getUserById = (id, callback) => {
+  const query = `
+        SELECT * FROM accounts WHERE id = ?
+    `;
+  const values = [id];
+
+  db.query(query, values, callback);
+};
+// ---------------------------------------------------------------------------------------------UPDATE USER
+module.exports.updateUser = (
+  firstname,
+  lastname,
+  username,
+  password,
+  id,
+  callback
+) => {
+  const query = `
+        UPDATE accounts SET firstname = ?, lastname = ?, username = ?, password = ? WHERE id = ?
+    `;
+    const values = [firstname, lastname, username, password, id];
+
+  db.query(query, values, callback);
+};
+
+// ---------------------------------------------------------------------------------------------DELETE USER
+module.exports.deleteUser = (id, callback) => {
+  const query = `
+        DELETE FROM accounts WHERE id = ?
+    `;
+  const values = [id];
+
+  db.query(query, values, callback);
 };
