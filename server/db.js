@@ -78,7 +78,7 @@ module.exports.createUser = (
 // ---------------------------------------------------------------------------------------------GET ALL USERS
 module.exports.getAccounts = (callback) => {
   const query = `
-        SELECT * FROM accounts
+        SELECT * FROM accounts ORDER BY id
     `;
 
   db.query(query, callback);
