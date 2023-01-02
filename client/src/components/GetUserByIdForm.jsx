@@ -1,6 +1,15 @@
 import { useForm } from "react-hook-form";
 import { useGetUserById } from "../queries/users/hooks/useGetUserById";
 import { useState } from "react";
+import {
+  FormContainer,
+  Form,
+  Input,
+  SubmitInput,
+  FormError,
+} from "../styles/styledForm";
+import { UpdateUserForm } from "./UpdateUserForm";
+import { DeleteUserForm } from "./DeleteUserForm";
 
 export const GetUserByIdForm = () => {
   const [searchId, setSearchId] = useState("");
@@ -34,14 +43,17 @@ export const GetUserByIdForm = () => {
   return (
     <>
       <div>GET USER BY ID</div>
-      <form onSubmit={handleSubmit((userId) => handleGetUserById(userId))}>
-        <input
-          {...register("id", { required: "This is required" })}
-          placeholder="Id of user to get"
-        />
-        <p>{errors.id?.message}</p>
-        <input type="submit" />
-      </form>
+      <FormContainer>
+        <Form onSubmit={handleSubmit((userId) => handleGetUserById(userId))}>
+          <Input
+            {...register("id", { required: "This is required" })}
+            placeholder="Id of user to get"
+            autoComplete="off"
+          />
+          <FormError>{errors.id?.message}</FormError>
+          <SubmitInput type="submit" />
+        </Form>
+      </FormContainer>
       {data &&
         (data.length === 0 ? (
           <div>No user with that id</div>
@@ -50,6 +62,12 @@ export const GetUserByIdForm = () => {
             Name:{data[0]?.firstname} Id:{data[0]?.id}
           </div>
         ))}
+      {data && (
+        <>
+          <UpdateUserForm user={data[0]}/>
+          <DeleteUserForm user={data[0]}/>
+        </>
+      )}
     </>
   );
 };

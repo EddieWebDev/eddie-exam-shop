@@ -6,5 +6,6 @@ export const useGetUserById = (id) => {
     queryKey: ["user-by-id", id],
     queryFn: () => getUserById(id),
     enabled: !!id,
+    cacheTime: 0,
   });
 };

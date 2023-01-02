@@ -18,7 +18,7 @@ db.connect((err) => {
 
 // ---------------------------------------------------------------------------------------------CREATE USER TABLE
 let createUsersTable = `
-    CREATE TABLE IF NOT EXISTS accounts (
+    CREATE TABLE IF NOT EXISTS users (
         id INT PRIMARY KEY AUTO_INCREMENT,
         firstname VARCHAR(250),
         lastname VARCHAR(250),
@@ -29,7 +29,7 @@ let createUsersTable = `
 `;
 db.query(createUsersTable, (err) => {
   if (err) {
-    console.log("Error creating accounts table");
+    console.log("Error creating users table");
   }
 });
 
@@ -60,7 +60,7 @@ module.exports.createUser = (
   callback
 ) => {
   const query = `
-        INSERT INTO accounts (
+        INSERT INTO users (
             firstname,
             lastname,
             username,
@@ -76,9 +76,9 @@ module.exports.createUser = (
 };
 
 // ---------------------------------------------------------------------------------------------GET ALL USERS
-module.exports.getAccounts = (callback) => {
+module.exports.getUsers = (callback) => {
   const query = `
-        SELECT * FROM accounts ORDER BY id
+        SELECT * FROM users ORDER BY id
     `;
 
   db.query(query, callback);
@@ -87,7 +87,7 @@ module.exports.getAccounts = (callback) => {
 // ---------------------------------------------------------------------------------------------GET USER BY ID
 module.exports.getUserById = (id, callback) => {
   const query = `
-        SELECT * FROM accounts WHERE id = ?
+        SELECT * FROM users WHERE id = ?
     `;
   const values = [id];
 
@@ -103,7 +103,7 @@ module.exports.updateUser = (
   callback
 ) => {
   const query = `
-        UPDATE accounts SET firstname = ?, lastname = ?, username = ?, password = ? WHERE id = ?
+        UPDATE users SET firstname = ?, lastname = ?, username = ?, password = ? WHERE id = ?
     `;
     const values = [firstname, lastname, username, password, id];
 
@@ -113,7 +113,7 @@ module.exports.updateUser = (
 // ---------------------------------------------------------------------------------------------DELETE USER
 module.exports.deleteUser = (id, callback) => {
   const query = `
-        DELETE FROM accounts WHERE id = ?
+        DELETE FROM users WHERE id = ?
     `;
   const values = [id];
 

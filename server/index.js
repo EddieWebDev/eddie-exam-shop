@@ -9,12 +9,12 @@ app.use(express.json());
 
 // ---------------------------------------------------------------------------------------------GET ALL USERS
 app.get("/users", (req, res) => {
-  db.getAccounts((error, accounts) => {
+  db.getUsers((error, users) => {
     if (error) {
       console.log(error);
       res.send(error);
     } else {
-      res.send(accounts);
+      res.send(users);
     }
   });
 });
@@ -49,10 +49,10 @@ app.post("/user", (req, res) => {
 
 // ---------------------------------------------------------------------------------------------UPDATE USER
 app.put("/user", (req, res) => {
-  console.log(req.body);
-  const { firstname, lastname, username, password } = req.body;
+  
+  const { firstname, lastname, username, password, id } = req.body;
 
-  db.updateUser(firstname, lastname, username, password, (id = 1), (error, item) => {
+  db.updateUser(firstname, lastname, username, password, id, (error, item) => {
     if (error) {
       console.log(error);
       res.send(error);
