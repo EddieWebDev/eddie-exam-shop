@@ -1,47 +1,36 @@
-import styled from 'styled-components';
+import tw from "tailwind-styled-components";
 
-export const HeaderContainer = styled.header.attrs({className: "header-container"})`
-    height: 150px;
-    width: 100%;
-    background-color: black;
-    display: flex;
+export const HeaderContainer = tw.header`
+    h-[150px]
+    w-full
+    bg-black
+    flex
 `
 
-export const HeaderLogoContainer = styled.div.attrs({className: "header-logo-container"})`
-    width: 50%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+export const HeaderLogoContainer = tw.div`
+    w-1/2
+    h-1/2
+    flex
+    justify-center
+    items-center
 `
 
-export const HeaderLogo = styled.h1.attrs({className: "header-logo"})`
-    color: white;
+export const HeaderLogo = tw.h1`
+    text-white
 `
 
-export const HeaderNavContainer = styled.nav.attrs({className: "header-nav-container"})`
-    width: 100%;
+export const HeaderNavContainer = tw.nav`
+    w-full
 `
 
-export const HeaderNavUl = styled.ul.attrs({className: "header-nav-ul"})`
-    height: 50%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    
-    a {
-        color: white;
-    }
-    
-    a:visited {
-        color: white;
-    }
-    
-    a:hover {
-        text-decoration: underline;
-    }
+export const HeaderNavUl = tw.ul`
+    h-1/2
+    flex
+    justify-around
+    items-center
+    text-white
 `
 
-export const HeaderNavLi = styled.li.attrs({className: "header-nav-li"})`
-    color: white;
+export const HeaderNavLi = tw.li`
+    hover:underline
 `

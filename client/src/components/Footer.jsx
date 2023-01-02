@@ -8,28 +8,28 @@ function Footer() {
             <FooterNavContainer>
                 <FooterNavUl>
                     <FooterNavLi>
-                        <Link className='footer-nav-link' to ="/">Home</Link>
+                        <Link to ="/">Home</Link>
                     </FooterNavLi>
                     <FooterNavLi>
-                        <Link className='footer-nav-link' to ="/about">About</Link>
+                        <Link to ="/about">About</Link>
                     </FooterNavLi>
                     <FooterNavLi>
-                        <Link className='footer-nav-link' to ="/products">Products</Link>
+                        <Link to ="/products">Products</Link>
                     </FooterNavLi>
                     <FooterNavLi>
-                        <Link className='footer-nav-link' to ="/product">Product</Link>
+                        <Link to ="/product">Product</Link>
                     </FooterNavLi>
                     <FooterNavLi>
-                        <Link className='footer-nav-link' to ="/admin">Admin</Link>
+                        <Link to ="/admin">Admin</Link>
                     </FooterNavLi>
                     <FooterNavLi>
-                        <Link className='footer-nav-link' to ="/login">Login</Link>
+                        <Link to ="/login">Login</Link>
                     </FooterNavLi>
                 </FooterNavUl>
             </FooterNavContainer>
 
             <FooterLogoContainer>
-                <Link className='footer-logo-link' to ="/">
+                <Link to ="/">
                     <FooterLogo>
                         LOGO
                     </FooterLogo>
