@@ -15,11 +15,15 @@ export const UpdateUserForm = ({ user }) => {
     formState: { errors },
   } = useForm();
 
-  const { mutate } = useUpdateUser();
+  const { mutate, isSuccess } = useUpdateUser();
 
   const handleUpdateUser = (updatedUser) => {
     mutate(updatedUser);
   };
+
+  if(isSuccess) {
+    console.log("det fungerade!")
+  }
 
   return (
     <>

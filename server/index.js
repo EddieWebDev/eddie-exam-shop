@@ -32,36 +32,51 @@ app.get("/user/:id", (req, res) => {
     }
   });
 });
+app.get("/user/:id", (req, res) => {
+  const { id } = req.params;
+
+  db.getUserById(id, (error, user) => {
+    if (error) {
+      console.log(error);
+      res.send(error);
+    } else {
+      res.send(user);
+    }
+  });
+});
 
 // ---------------------------------------------------------------------------------------------CREATE USER
 app.post("/user", (req, res) => {
   const { firstname, lastname, username, password } = req.body;
 
-  db.createUser(firstname, lastname, username, password, (error) => {
-    if (error) {
-      console.log(error);
-      res.send(error);
-    } else {
-      console.log("user created");
-    }
-  });
+  try {
+    let result = db.createUser(firstname, lastname, username, password)
+    res.json(result)
+  } catch(e) {
+    console.log(e)
+    res.sendStatus(500)
+  }
 });
+
 
 // ---------------------------------------------------------------------------------------------UPDATE USER
 app.put("/user", (req, res) => {
   
   const { firstname, lastname, username, password, id } = req.body;
-
-  db.updateUser(firstname, lastname, username, password, id, (error, item) => {
-    if (error) {
-      console.log(error);
-      res.send(error);
-    } else if (item.affectedRows === 0) {
-      console.log("id does not exist, no user updated")
-    } else {
-      console.log("user updated");
-    }
-  });
+  try {
+    let result = db.updateUser(
+      firstname,
+      lastname,
+      username,
+      password,
+      id
+    );
+    console.log(res.json(result));
+    res.json(result);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
 });
 
 // ---------------------------------------------------------------------------------------------GET USER BY ID
@@ -73,7 +88,7 @@ app.delete("/user/:id", (req, res) => {
       console.log(error);
       res.send(error);
     } else if (item.affectedRows === 0) {
-      console.log("id does not exist, no user deleted")
+      console.log("id does not exist, no user deleted");
     } else {
       console.log("user deleted");
     }

@@ -26,6 +26,9 @@ export const GetUserByIdForm = () => {
   });
 
   const { data, isInitialLoading, isError, error } = useGetUserById(searchId);
+  if(data) {
+    console.log(data)
+  }
 
   const handleGetUserById = (userId) => {
     let { id } = userId;

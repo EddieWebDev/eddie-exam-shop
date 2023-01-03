@@ -15,7 +15,11 @@ export const DeleteUserForm = ({user}) => {
     formState: { errors },
   } = useForm();
 
-  const { mutate } = useDeleteUser();
+  const { mutate, isSuccess } = useDeleteUser();
+
+  if(isSuccess) {
+    return <div>SUCCESS DELETE</div>
+  }
 
   const handleDeleteUser = (userId) => {
     const { id } = userId;
