@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const db = require("./db");
 
@@ -5,6 +6,10 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+/* app.use((req, res, next) => {
+  console.log(req.path, req,method)
+  next()
+}) */
 app.use(express.json());
 
 // ---------------------------------------------------------------------------------------------GET ALL USERS
@@ -20,18 +25,6 @@ app.get("/users", (req, res) => {
 });
 
 // ---------------------------------------------------------------------------------------------GET USER BY ID
-app.get("/user/:id", (req, res) => {
-  const { id } = req.params;
-
-  db.getUserById(id, (error, user) => {
-    if (error) {
-      console.log(error);
-      res.send(error);
-    } else {
-      res.send(user);
-    }
-  });
-});
 app.get("/user/:id", (req, res) => {
   const { id } = req.params;
 
