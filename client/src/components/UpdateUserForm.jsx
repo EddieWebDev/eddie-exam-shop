@@ -8,7 +8,7 @@ import {
   FormError,
 } from "../styles/styledForm";
 
-export const UpdateUserForm = ({ user }) => {
+export const UpdateUserForm = (user) => {
   const {
     register,
     handleSubmit,
@@ -56,17 +56,17 @@ export const UpdateUserForm = ({ user }) => {
             id="lastname"
           />
           <FormError>{errors.lastname?.message}</FormError>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="email">Email</label>
           <Input
-            {...register("username", {
+            {...register("email", {
               required: "This is required",
               minLength: { value: 4, message: "Min length 4" },
             })}
-            placeholder="User Name"
-            defaultValue={user.username}
-            id="username"
+            placeholder="Email"
+            defaultValue={user.email}
+            id="email"
           />
-          <FormError>{errors.username?.message}</FormError>
+          <FormError>{errors.email?.message}</FormError>
           <label htmlFor="password">Password</label>
           <Input
             {...register("password", {

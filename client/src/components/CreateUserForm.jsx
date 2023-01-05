@@ -45,13 +45,13 @@ export const CreateUserForm = () => {
           />
           <FormError>{errors.lastname?.message}</FormError>
           <Input
-            {...register("username", {
-              required: "Username is required",
+            {...register("email", {
+              required: "Email is required",
               minLength: { value: 4, message: "Min length 4" },
             })}
-            placeholder="User Name"
+            placeholder="Email"
           />
-          <FormError>{errors.username?.message}</FormError>
+          <FormError>{errors.email?.message}</FormError>
           <Input
             {...register("password", {
               required: "Password is required",

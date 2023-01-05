@@ -26,8 +26,8 @@ export const GetUserByIdForm = () => {
   });
 
   const { data, isInitialLoading, isError, error } = useGetUserById(searchId);
-  if(data) {
-    console.log(data)
+  if (data) {
+    console.log(data);
   }
 
   const handleGetUserById = (userId) => {
@@ -35,13 +35,6 @@ export const GetUserByIdForm = () => {
     setSearchId(id);
     reset();
   };
-
-  if (isInitialLoading) {
-    return <div>Loading</div>;
-  }
-  if (isError) {
-    return <div>{error.message}</div>;
-  }
 
   return (
     <>
@@ -57,7 +50,15 @@ export const GetUserByIdForm = () => {
           <SubmitInput type="submit" />
         </Form>
       </FormContainer>
-      {data &&
+      {isInitialLoading && <div>Loading</div>}
+      {isError && <div>{error.message}</div>}
+      {data && (
+        <>
+          <UpdateUserForm user={data} />
+          <DeleteUserForm user={data} />
+        </>
+      )}
+      {/*       {data &&
         (data.length === 0 ? (
           <div>No user with that id</div>
         ) : (
@@ -70,7 +71,7 @@ export const GetUserByIdForm = () => {
           <UpdateUserForm user={data[0]}/>
           <DeleteUserForm user={data[0]}/>
         </>
-      )}
+      )} */}
     </>
   );
 };

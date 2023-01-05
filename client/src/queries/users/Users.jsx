@@ -5,23 +5,24 @@ const usersApi = axios.create({
 });
 
 export const getAllUsers = async () => {
-  const response = await usersApi.get("/users");
+  const response = await usersApi.get("/api/users");
   return response.data
 };
 
 export const getUserById = async (id) => {
-  const response = await usersApi.get(`/user/${id}`);
+  const response = await usersApi.get(`/api/users/${id}`);
   return response.data
 };
 
 export const createUser = async (newUser) => {
-  await usersApi.post(`/user`, newUser);
+  await usersApi.post(`/api/users`, newUser);
 };
 
 export const updateUser = async (updatedUser) => {
-  await usersApi.put(`/user`, updatedUser);
+  const {id} = updatedUser.id
+  await usersApi.put(`/api/users/${id}`, updatedUser);
 };
 
 export const deleteUser = async (id) => {
-  await usersApi.delete(`/user/${id}`);
+  await usersApi.delete(`/api/users/${id}`);
 };
