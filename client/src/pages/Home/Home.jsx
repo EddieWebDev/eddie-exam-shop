@@ -11,7 +11,7 @@ function Home() {
     return(
         <section>
             <ul>
-            {data?.map(user => <li key={user.id}>Id:{user.id} Username:{user.username}</li>)}
+            {data?.map(user => <li key={user.id}>Id:{user.id} Email:{user.email}</li>)}
             </ul>
             <h1>Home</h1>
         </section>
