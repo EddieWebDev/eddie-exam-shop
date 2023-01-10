@@ -15,11 +15,10 @@ router.post("/", async (req, res) => {
     return res.status(404).send("No user found");
   }
   if (await bcrypt.compare(password, user.password)) {
-    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: process.env.ACCESS_TOKEN_EXPIRATION_TIME});
     res.cookie("token", accessToken, {
         httpOnly: true,
-    });
-    res.send({ accessToken: accessToken });
+    }).send("Logged in");
   } else {
     return res.status(403).send("Wrong password");
   }
