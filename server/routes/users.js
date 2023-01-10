@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
 import express from "express";
 import {
   getUsers,
@@ -7,11 +7,12 @@ import {
   updateUser,
   deleteUser,
 } from "../queries/users.js";
+import {authenticateToken} from "../utils/jwtAuth.js"
 
 const router = express.Router();
 
 //Get all users
-router.get("/", async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => {
   const users = await getUsers();
   res.send(users);
 });
@@ -21,7 +22,7 @@ router.get("/:id", async (req, res) => {
   const id = req.params.id;
   const user = await getUser(id);
   if (!user) {
-    return res.status(404).send({ error: `No user with id ${id} found` });
+    return res.status(404).send(`No user with id ${id} found`);
   }
   res.send(user);
 });
@@ -30,9 +31,9 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
 
-  const hashedPassword = await bcrypt.hash(password, 10)
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-  console.log(hashedPassword, "hashedpassword")
+  console.log(hashedPassword, "hashedpassword");
 
   const newUser = await createUser(firstname, lastname, email, hashedPassword);
 
@@ -51,7 +52,7 @@ router.put("/:id", async (req, res) => {
     id
   );
   if (!updatedUser) {
-    return res.status(404).send({ error: `No user with id ${id} found` });
+    return res.status(404).send(`No user with id ${id} found`);
   }
   res.send(updatedUser);
 });
@@ -62,9 +63,9 @@ router.delete("/:id", async (req, res) => {
   const result = await deleteUser(id);
   console.log(result);
   if (result.affectedRows === 0) {
-    return res.status(404).send({ error: `No user with id ${id} found` });
+    return res.status(404).send(`No user with id ${id} found`);
   }
-  res.status(200).send({ message: `User with id ${id} deleted` });
+  res.status(200).send(`User with id ${id} deleted`);
 });
 
 export default router;
