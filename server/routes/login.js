@@ -1,5 +1,6 @@
-import bcrypt from "bcrypt";
 import express from "express";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { getUserByEmail } from "../queries/users.js";
 
 const router = express.Router();
@@ -11,12 +12,16 @@ router.post("/", async (req, res) => {
   const user = await getUserByEmail(email);
 
   if (!user) {
-    return res.status(404).send({ error: `No user with email ${email} found` });
+    return res.status(404).send("No user found");
   }
   if (await bcrypt.compare(password, user.password)) {
-    res.send("Success");
+    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+    res.cookie("token", accessToken, {
+        httpOnly: true,
+    });
+    res.send({ accessToken: accessToken });
   } else {
-    res.send("Wrong password");
+    return res.status(403).send("Wrong password");
   }
 });
 
