@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt'
 import express from "express";
 import {
   getUsers,
@@ -28,7 +29,13 @@ router.get("/:id", async (req, res) => {
 //Create a user
 router.post("/", async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
-  const newUser = await createUser(firstname, lastname, email, password);
+
+  const hashedPassword = await bcrypt.hash(password, 10)
+
+  console.log(hashedPassword, "hashedpassword")
+
+  const newUser = await createUser(firstname, lastname, email, hashedPassword);
+
   res.status(201).send(newUser);
 });
 
