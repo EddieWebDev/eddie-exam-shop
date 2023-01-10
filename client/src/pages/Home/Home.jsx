@@ -6,7 +6,7 @@ function Home() {
        return <div>Loading</div>
     }
     if(isError) {
-        return <div>{error.message}</div>
+        return <div>{error.message} {error.response.data}</div>
     }
     return(
         <section>
