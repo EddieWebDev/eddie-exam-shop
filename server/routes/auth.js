@@ -6,7 +6,7 @@ import { getUserByEmail } from "../queries/users.js";
 const router = express.Router();
 
 //Login a user
-router.post("/", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   const user = await getUserByEmail(email);
@@ -18,10 +18,15 @@ router.post("/", async (req, res) => {
     const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: process.env.ACCESS_TOKEN_EXPIRATION_TIME});
     res.cookie("token", accessToken, {
         httpOnly: true,
-    }).send("Logged in");
+    }).send(user);
   } else {
     return res.status(403).send("Wrong password");
   }
 });
+
+//Logout a user
+router.post("/logout", (req, res) => {
+  res.status(204).clearCookie("token").send("Logged out")
+})
 
 export default router;
