@@ -15,7 +15,8 @@ router.post("/login", async (req, res) => {
     return res.status(404).send("No user found");
   }
   if (await bcrypt.compare(password, user.password)) {
-    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: process.env.ACCESS_TOKEN_EXPIRATION_TIME});
+    const accessToken = jwt.sign({}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: process.env.ACCESS_TOKEN_EXPIRATION_TIME});
+    Object.assign(user, jwt.decode(accessToken))
     res.cookie("token", accessToken, {
         httpOnly: true,
     }).send(user);

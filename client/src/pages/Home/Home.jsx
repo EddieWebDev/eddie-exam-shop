@@ -10,10 +10,10 @@ function Home() {
     }
     return(
         <section>
+            <h1>Home</h1>
             <ul>
             {data?.map(user => <li key={user.id}>Id:{user.id} Email:{user.email}</li>)}
             </ul>
-            <h1>Home</h1>
         </section>
     )
 }
