@@ -1,15 +1,17 @@
-import { LoginForm } from "../../components/LoginForm"
-import { LogoutButton } from "../../components/LogoutButton"
+import { useContext } from "react";
+import { LoginForm } from "../../components/LoginForm";
+import { LogoutButton } from "../../components/LogoutButton";
+import { UserContext } from "../../context/UserContext";
 
 const Login = () => {
-    
-    return(
-        <section>
-            <h1>Login</h1>
-            <LoginForm />
-            <LogoutButton />
-        </section>
-    )
-}
+  const { user } = useContext(UserContext);
 
-export default Login
+  return (
+    <section>
+      <h1>Login</h1>
+      <div>{user ? <LogoutButton /> : <LoginForm />}</div>
+    </section>
+  );
+};
+
+export default Login;

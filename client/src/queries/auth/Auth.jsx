@@ -5,7 +5,8 @@ const authApi = axios.create({
 });
 
 export const login = async (loginCredentials) => {
-    await authApi.post(`/api/auth/login`, loginCredentials);
+  const {data} = await authApi.post(`/api/auth/login`, loginCredentials);
+  return data
 };
 
 export const logout = async () => {
