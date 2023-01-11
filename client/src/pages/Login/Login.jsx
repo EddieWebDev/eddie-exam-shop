@@ -1,4 +1,5 @@
 import { LoginForm } from "../../components/LoginForm"
+import { LogoutButton } from "../../components/LogoutButton"
 
 const Login = () => {
     
@@ -6,6 +7,7 @@ const Login = () => {
         <section>
             <h1>Login</h1>
             <LoginForm />
+            <LogoutButton />
         </section>
     )
 }

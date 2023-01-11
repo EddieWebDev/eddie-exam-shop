@@ -7,12 +7,11 @@ import {
   updateUser,
   deleteUser,
 } from "../queries/users.js";
-import {authenticateToken} from "../utils/jwtAuth.js"
 
 const router = express.Router();
 
 //Get all users
-router.get("/",/*  authenticateToken, */ async (req, res) => {
+router.get("/", async (req, res) => {
   const users = await getUsers();
   res.send(users);
 });
