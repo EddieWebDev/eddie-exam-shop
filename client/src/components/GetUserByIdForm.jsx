@@ -8,8 +8,8 @@ import {
   SubmitInput,
   FormError,
 } from "../styles/styledForm";
-import { UpdateUserForm } from "./UpdateUserForm";
-import { DeleteUserForm } from "./DeleteUserForm";
+import { UpdateUserForm } from "./updateUserForm";
+import { DeleteUserForm } from "./deleteUserForm";
 
 export const GetUserByIdForm = () => {
   const [searchId, setSearchId] = useState("");

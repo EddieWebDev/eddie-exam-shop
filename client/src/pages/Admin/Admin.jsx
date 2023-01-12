@@ -1,11 +1,10 @@
-import { CreateUserForm } from "../../components/CreateUserForm";
-import { DeleteUserForm } from "../../components/DeleteUserForm";
-import { GetUserByIdForm } from "../../components/GetUserByIdForm";
 import { useState } from "react";
 import { Tab, TabContainer } from "../../styles/styledTabs";
+import { UsersAdmin } from "./components/users/usersAdmin";
+import { ProductsAdmin } from "./components/products/productsAdmin";
 
 function Admin() {
-  const tabs = ["Create user", "Search and update user", "Delete user"];
+  const tabs = ["Users", "Products"];
 
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
@@ -13,13 +12,14 @@ function Admin() {
     <section>
       <h1>Admin</h1>
       <TabContainer>
-          {tabs.map((tab, i) => (
-            <Tab key={i} onClick={() => setActiveTab(tab)}>{tab}</Tab>
-          ))}
+        {tabs.map((tab, i) => (
+          <Tab key={i} onClick={() => setActiveTab(tab)}>
+            {tab}
+          </Tab>
+        ))}
       </TabContainer>
-      {activeTab === "Create user" && <CreateUserForm />}
-      {activeTab === "Search and update user" && <GetUserByIdForm />}
-      {activeTab === "Delete user" && <DeleteUserForm />}
+      {activeTab === "Users" && <UsersAdmin />}
+      {activeTab === "Products" && <ProductsAdmin />}
     </section>
   );
 }
