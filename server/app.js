@@ -1,5 +1,6 @@
 import express from "express";
 import userRoutes from "./routes/users.js";
+import productRoutes from "./routes/products.js";
 import authRoutes from "./routes/auth.js";
 import cookieParser from "cookie-parser";
 import {authenticateToken} from "./utils/jwtAuth.js"
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(cookieParser())
 
 app.use("/api/users", authenticateToken, userRoutes);
+app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
 
 app.use((err, req, res, next) => {
