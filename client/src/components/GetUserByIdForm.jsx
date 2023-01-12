@@ -12,23 +12,16 @@ import { UpdateUserForm } from "./updateUserForm";
 import { DeleteUserForm } from "./deleteUserForm";
 
 export const GetUserByIdForm = () => {
-  const [searchId, setSearchId] = useState("");
+  const [searchId, setSearchId] = useState(null);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
-    defaultValues: {
-      id: "",
-    },
-  });
+  } = useForm();
 
   const { data, isInitialLoading, isError, error } = useGetUserById(searchId);
-  if (data) {
-    console.log(data);
-  }
 
   const handleGetUserById = (userId) => {
     let { id } = userId;

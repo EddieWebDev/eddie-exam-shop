@@ -8,22 +8,19 @@ import {
   FormError,
 } from "../../../../styles/styledForm";
 
-export const UpdateProductForm = (product) => {
+export const UpdateProductForm = ({product}) => {
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const { mutate, isSuccess } = useUpdateProduct();
+  const { mutate } = useUpdateProduct();
 
   const handleUpdateProduct = (updatedProduct) => {
     mutate(updatedProduct);
   };
-
-  if (isSuccess) {
-    console.log("det fungerade!");
-  }
 
   return (
     <>

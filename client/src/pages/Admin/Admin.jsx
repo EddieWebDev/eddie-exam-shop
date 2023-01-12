@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Tab, TabContainer } from "../../styles/styledTabs";
-import { UsersAdmin } from "./components/users/usersAdmin";
-import { ProductsAdmin } from "./components/products/productsAdmin";
+import { UsersAdmin } from "./components/usersAdmin";
+import { ProductsAdmin } from "./components/productsAdmin";
 
 function Admin() {
   const tabs = ["Users", "Products"];
