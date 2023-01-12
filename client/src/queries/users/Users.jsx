@@ -19,7 +19,7 @@ export const createUser = async (newUser) => {
 };
 
 export const updateUser = async (updatedUser) => {
-  const {id} = updatedUser.id
+  const {id} = updatedUser
   await usersApi.put(`/api/users/${id}`, updatedUser);
 };
 

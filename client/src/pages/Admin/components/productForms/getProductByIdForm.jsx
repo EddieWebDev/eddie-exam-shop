@@ -12,24 +12,16 @@ import { UpdateProductForm } from "./updateProductForm";
 import { DeleteProductForm } from "./deleteProductForm";
 
 export const GetProductByIdForm = () => {
-  const [searchId, setSearchId] = useState("");
+  const [searchId, setSearchId] = useState(null);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
-    defaultValues: {
-      id: "",
-    },
-  });
+  } = useForm();
 
-  const { data, isInitialLoading, isError, error } =
-    useGetProductById(searchId);
-  if (data) {
-    console.log(data);
-  }
+  const { data, isInitialLoading, isError, error } = useGetProductById(searchId);
 
   const handleGetProductById = (productId) => {
     let { id } = productId;

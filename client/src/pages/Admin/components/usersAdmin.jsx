@@ -1,6 +1,6 @@
-import { CreateUserForm } from "../../../../components/createUserForm";
-import { GetUserByIdForm } from "../../../../components/getUserByIdForm";
-import { useGetAllUsers } from "../../../../queries/users/hooks/useGetAllUsers";
+import { CreateUserForm } from "../../../components/createUserForm";
+import { GetUserByIdForm } from "../../../components/getUserByIdForm";
+import { useGetAllUsers } from "../../../queries/users/hooks/useGetAllUsers";
 
 export const UsersAdmin = () => {
   const { data, isError, error, isLoading } = useGetAllUsers();

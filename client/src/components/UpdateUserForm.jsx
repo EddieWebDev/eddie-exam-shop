@@ -8,22 +8,20 @@ import {
   FormError,
 } from "../styles/styledForm";
 
-export const UpdateUserForm = (user) => {
+export const UpdateUserForm = ({user}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
-  const { mutate, isSuccess } = useUpdateUser();
+  const { mutate } = useUpdateUser();
 
   const handleUpdateUser = (updatedUser) => {
     mutate(updatedUser);
+    reset();
   };
-
-  if(isSuccess) {
-    console.log("det fungerade!")
-  }
 
   return (
     <>

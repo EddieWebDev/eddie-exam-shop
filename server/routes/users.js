@@ -43,11 +43,13 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
   const { firstname, lastname, email, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+
   const updatedUser = await updateUser(
     firstname,
     lastname,
     email,
-    password,
+    hashedPassword,
     id
   );
   if (!updatedUser) {
