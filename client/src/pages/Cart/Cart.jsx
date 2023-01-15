@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import { CreateOrderButton } from "../../components/createOrderButton"
 
 const Cart = () => {
   const cart = useContext(CartContext);
@@ -9,13 +10,14 @@ const Cart = () => {
       <h1>Cart</h1>
       <div>
         {cart.items.map((item) => (
-          <div>
+          <div key={item.id}>
             {item.productname}: ${item.price} x {item.qty} = $
             {item.price * item.qty}
           </div>
         ))}
         Total: ${cart.getCartTotal()}
       </div>
+      <CreateOrderButton/>
     </>
   );
 };

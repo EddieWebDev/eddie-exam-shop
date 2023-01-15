@@ -34,3 +34,33 @@ export const createProductsTable = async () => {
     console.log("Products table created");
   }
 };
+
+export const createOrdersTable = async () => {
+  const response = await pool.query(`
+    CREATE TABLE IF NOT EXISTS orders (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        user_id INT NOT NULL,
+        status VARCHAR(250) NOT NULL,
+        created TIMESTAMP NOT NULL DEFAULT NOW()
+        )
+    `);
+  if (response[0].warningStatus === 0) {
+    console.log("Orders table created");
+  }
+};
+
+export const createOrderProductsTable = async () => {
+  const response = await pool.query(`
+    CREATE TABLE IF NOT EXISTS order_products (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        order_id INT NOT NULL,
+        product_id INT NOT NULL,
+        product_name VARCHAR(250) NOT NULL,
+        product_price INT NOT NULL,
+        product_qty INT NOT NULL
+        )
+    `);
+  if (response[0].warningStatus === 0) {
+    console.log("OrderProducts table created");
+  }
+};
