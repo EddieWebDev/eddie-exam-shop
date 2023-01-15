@@ -7,7 +7,6 @@ export const useLogin = () => {
   const { setUser } = useContext(UserContext);
   return useMutation(login, {
     onSuccess: (data) => {
-      console.log(data)
       setUser(data);
     },
   });
