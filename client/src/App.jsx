@@ -9,8 +9,12 @@ import Products from "./pages/Products/Products";
 import Product from "./pages/Product/Product";
 import Admin from "./pages/Admin/Admin";
 import Login from "./pages/Login/Login";
+import Categories from "./pages/Categories/Categories";
+import Category from "./pages/Category/Category"
+import Cart from "./pages/Cart/Cart"
 import { UserContext } from "./context/UserContext";
 import { useState, useMemo, useEffect } from "react";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
   const client = new QueryClient();
@@ -21,6 +25,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
+      console.log(user)
       let expTime = user.exp - user.iat;
       const autoLogout = setInterval(() => {
         setUser(null);
@@ -35,16 +40,21 @@ function App() {
         <ReactQueryDevtools initialIsOpen={false} />
         <BrowserRouter>
           <UserContext.Provider value={currentUser}>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/product" element={<Product />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-            <Footer />
+            <CartProvider>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/categories" element={<Categories />} />
+                <Route path="/categories/:category" element={<Category />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/product" element={<Product />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/login" element={<Login />} />
+              </Routes>
+              <Footer />
+            </CartProvider>
           </UserContext.Provider>
         </BrowserRouter>
       </QueryClientProvider>

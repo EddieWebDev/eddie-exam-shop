@@ -1,6 +1,6 @@
 import { useGetAllUsers } from "../../queries/users/hooks/useGetAllUsers";
 
-function Home() {
+const Home = () => {
     const {data, isError, error, isLoading} = useGetAllUsers();
     if(isLoading) {
        return <div>Loading</div>

@@ -25,13 +25,16 @@ function Header() {
                         <Link className='nav-link' to ="/products">Products</Link>
                     </HeaderNavLi>
                     <HeaderNavLi>
-                        <Link className='nav-link' to ="/product">Product</Link>
+                        <Link className='nav-link' to ="/categories">Categories</Link>
                     </HeaderNavLi>
                     <HeaderNavLi>
                         <Link className='header-nav-link' to ="/admin">Admin</Link>
                     </HeaderNavLi>
                     <HeaderNavLi>
                         <Link className='header-nav-link' to ="/login">Login</Link>
+                    </HeaderNavLi>
+                    <HeaderNavLi>
+                        <Link className='header-nav-link' to ="/cart">Cart</Link>
                     </HeaderNavLi>
                 </HeaderNavUl>
             </HeaderNavContainer>

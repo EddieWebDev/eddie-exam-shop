@@ -6,12 +6,22 @@ const productsApi = axios.create({
 
 export const getAllProducts = async () => {
   const response = await productsApi.get("/api/products");
-  return response.data
+  return response.data;
 };
 
 export const getProductById = async (id) => {
   const response = await productsApi.get(`/api/products/${id}`);
-  return response.data
+  return response.data;
+};
+
+export const getProductCategories = async () => {
+  const response = await productsApi.get("/api/products/categories/all");
+  return response.data;
+};
+
+export const getProductsByCategory = async (category) => {
+  const response = await productsApi.get(`/api/products/category/${category}`);
+  return response.data;
 };
 
 export const createProduct = async (newProduct) => {
@@ -19,7 +29,7 @@ export const createProduct = async (newProduct) => {
 };
 
 export const updateProduct = async (updatedProduct) => {
-  const {id} = updatedProduct.id
+  const { id } = updatedProduct.id;
   await productsApi.put(`/api/products/${id}`, updatedProduct);
 };
 
