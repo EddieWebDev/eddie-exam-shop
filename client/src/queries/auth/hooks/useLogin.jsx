@@ -4,10 +4,10 @@ import { useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
 
 export const useLogin = () => {
-  const { setUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
   return useMutation(login, {
     onSuccess: (data) => {
-      setUser(data);
+      setCurrentUser(data);
     },
   });
 };

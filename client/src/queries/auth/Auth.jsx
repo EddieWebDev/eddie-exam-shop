@@ -12,3 +12,8 @@ export const login = async (loginCredentials) => {
 export const logout = async () => {
   await authApi.post(`/api/auth/logout`);
 };
+
+export const checkToken = async () => {
+  const {data} = await authApi.post(`/api/auth/checktoken`);
+  return data
+};
