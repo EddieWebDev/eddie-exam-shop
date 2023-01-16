@@ -15,6 +15,7 @@ import Cart from "./pages/Cart/Cart"
 import { UserContext } from "./context/UserContext";
 import { useState, useMemo, useEffect } from "react";
 import { CartProvider } from "./context/CartContext";
+import Checkout from "./pages/Checkout/Checkout";
 
 function App() {
   const client = new QueryClient();
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
                 <Route path="/categories" element={<Categories />} />
                 <Route path="/categories/:category" element={<Category />} />
                 <Route path="/products" element={<Products />} />
