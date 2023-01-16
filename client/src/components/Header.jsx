@@ -36,6 +36,9 @@ function Header() {
                     <HeaderNavLi>
                         <Link className='header-nav-link' to ="/cart">Cart</Link>
                     </HeaderNavLi>
+                    <HeaderNavLi>
+                        <Link className='header-nav-link' to ="/checkout">Checkout</Link>
+                    </HeaderNavLi>
                 </HeaderNavUl>
             </HeaderNavContainer>
 
