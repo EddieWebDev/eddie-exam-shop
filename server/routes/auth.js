@@ -15,11 +15,20 @@ router.post("/login", async (req, res) => {
     return res.status(404).send("No user found");
   }
   if (await bcrypt.compare(password, user.password)) {
-    const accessToken = jwt.sign({}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: process.env.ACCESS_TOKEN_EXPIRATION_TIME});
-    Object.assign(user, jwt.decode(accessToken))
-    res.cookie("token", accessToken, {
+    const accessToken = jwt.sign(
+      { id: user.id, email: user.email },
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: process.env.ACCESS_TOKEN_EXPIRATION_TIME,
+      }
+    );
+    const limitedUserInfo = { id: user.id, email: user.email };
+    Object.assign(limitedUserInfo, jwt.decode(accessToken));
+    res
+      .cookie("token", accessToken, {
         httpOnly: true,
-    }).send(user);
+      })
+      .send(limitedUserInfo);
   } else {
     return res.status(403).send("Wrong password");
   }
@@ -27,7 +36,24 @@ router.post("/login", async (req, res) => {
 
 //Logout a user
 router.post("/logout", (req, res) => {
-  res.status(204).clearCookie("token").send("Logged out")
-})
+  res.status(204).clearCookie("token").send("Logged out");
+});
+
+//Check token
+router.post("/checktoken", (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.send(undefined);
+  }
+
+  try {
+    const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    res.send(user);
+  } catch (err) {
+    res.clearCookie("token");
+    res.send(undefined);
+  }
+});
 
 export default router;

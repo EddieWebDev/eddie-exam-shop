@@ -4,10 +4,10 @@ import { UserContext } from "../../../context/UserContext";
 import { logout } from "../Auth";
 
 export const useLogout = () => {
-  const {setUser} = useContext(UserContext)
+  const { removeCurrentUser } = useContext(UserContext);
   return useMutation(logout, {
     onSuccess: () => {
-      setUser(null)
-    }
+      removeCurrentUser();
+    },
   });
 };

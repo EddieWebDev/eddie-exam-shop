@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 export const CreateOrderButton = () => {
   const cart = useContext(CartContext);
   const { user } = useContext(UserContext);
-  console.log(user);
 
   const { mutate, isSuccess, isLoading, data } = useCreateOrder();
 
