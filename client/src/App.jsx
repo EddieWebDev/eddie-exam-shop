@@ -7,7 +7,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import About from "./pages/About/About";
 import Home from "./pages/Home/Home";
-import Products from "./pages/Products/Products";
 import Product from "./pages/Product/Product";
 import Admin from "./pages/Admin/Admin";
 import Login from "./pages/Login/Login";
@@ -34,8 +33,7 @@ function App() {
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/categories" element={<Categories />} />
                 <Route path="/categories/:category" element={<Category />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/product" element={<Product />} />
+                <Route path="/product/:id" element={<Product />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/login" element={<Login />} />
               </Routes>
