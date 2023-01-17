@@ -26,7 +26,7 @@ const Categories = () => {
         {data &&
           data.map((product) => (
             <div key={product.id}>
-              <Link to="/">
+              <Link to={`/product/${product.id}`}>
                 <div>{product.productname}</div>
               </Link>
 
