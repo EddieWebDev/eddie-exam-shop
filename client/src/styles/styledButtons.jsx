@@ -1,7 +1,8 @@
 import tw from "tailwind-styled-components";
 
 export const StyledLogoutButton = tw.button`
-    w-1/3
+    w-auto
+    p-2
     border
     rounded
     shadow

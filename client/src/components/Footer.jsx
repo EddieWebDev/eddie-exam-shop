@@ -1,43 +1,35 @@
-import {Link} from 'react-router-dom'
-import {FooterContainer, FooterLogoContainer, FooterLogo, FooterNavContainer, FooterNavUl, FooterNavLi} from "../styles/styledFooter"
+import { Link } from "react-router-dom";
+import {
+  FooterContainer,
+  FooterLogoContainer,
+  FooterNavContainer,
+  FooterNavUl,
+} from "../styles/styledFooter";
 
 function Footer() {
-    return(
-        <FooterContainer>
-            
-            <FooterNavContainer>
-                <FooterNavUl>
-                    <FooterNavLi>
-                        <Link to ="/">Home</Link>
-                    </FooterNavLi>
-                    <FooterNavLi>
-                        <Link to ="/about">About</Link>
-                    </FooterNavLi>
-                    <FooterNavLi>
-                        <Link to ="/products">Products</Link>
-                    </FooterNavLi>
-                    <FooterNavLi>
-                        <Link to ="/product">Product</Link>
-                    </FooterNavLi>
-                    <FooterNavLi>
-                        <Link to ="/admin">Admin</Link>
-                    </FooterNavLi>
-                    <FooterNavLi>
-                        <Link to ="/login">Login</Link>
-                    </FooterNavLi>
-                </FooterNavUl>
-            </FooterNavContainer>
+  return (
+    <FooterContainer>
+      <FooterNavContainer>
+        <FooterNavUl>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/categories">Categories</Link>
+          </li>
+          <li>
+            <Link to="/cart">Cart</Link>
+          </li>
+        </FooterNavUl>
+      </FooterNavContainer>
 
-            <FooterLogoContainer>
-                <Link to ="/">
-                    <FooterLogo>
-                        LOGO
-                    </FooterLogo>
-                </Link>
-            </FooterLogoContainer>
-
-        </FooterContainer>
-    )
+      <FooterLogoContainer>
+        <Link to="/">
+          <h1>LOGO</h1>
+        </Link>
+      </FooterLogoContainer>
+    </FooterContainer>
+  );
 }
 
-export default Footer
+export default Footer;

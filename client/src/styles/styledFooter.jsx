@@ -1,10 +1,13 @@
 import tw from "tailwind-styled-components";
 
 export const FooterContainer = tw.footer`
-    h-[300px]
+    h-52
     w-full
-    bg-black
+    bg-primary-darkgreen
     flex
+    mt-auto
+    text-white
+    p-4
 `;
 
 export const FooterLogoContainer = tw.div`
@@ -14,26 +17,15 @@ export const FooterLogoContainer = tw.div`
     items-center
 `;
 
-export const FooterLogo = tw.h1`
-    text-white
-`;
-
 export const FooterNavContainer = tw.nav`
-    w-full
-    flex
-    justify-center
-    items-center
+    w-1/2
 `;
 
 export const FooterNavUl = tw.ul`
-    h-1/2
+    h-full
     flex
     flex-col
-    justify-around
+    justify-center
     items-center
-    text-white
-`;
-
-export const FooterNavLi = tw.li`
-    hover:underline
+    gap-4
 `;
