@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import {
   HeaderContainer,
   HeaderLogoContainer,
-  HeaderLogo,
   HeaderNavContainer,
   HeaderNavUl,
-  HeaderNavLi,
 } from "../styles/styledHeader";
 import { useCheckToken } from "../queries/auth/hooks/useCheckToken";
 import { useEffect } from "react";
@@ -20,37 +18,28 @@ function Header() {
   return (
     <HeaderContainer>
       <HeaderLogoContainer>
-        <Link className="logo-link" to="/">
-          <HeaderLogo>LOGO</HeaderLogo>
+        <Link to="/">
+          <h1>LOGO</h1>
         </Link>
       </HeaderLogoContainer>
 
       <HeaderNavContainer>
         <HeaderNavUl>
-          <HeaderNavLi>
+          <li>
             <Link to="/">Home</Link>
-          </HeaderNavLi>
-          <HeaderNavLi>
-            <Link to="/about">About</Link>
-          </HeaderNavLi>
-          <HeaderNavLi>
-            <Link to="/products">Products</Link>
-          </HeaderNavLi>
-          <HeaderNavLi>
+          </li>
+          <li>
             <Link to="/categories">Categories</Link>
-          </HeaderNavLi>
-          <HeaderNavLi>
+          </li>
+          <li>
             <Link to="/admin">Admin</Link>
-          </HeaderNavLi>
-          <HeaderNavLi>
+          </li>
+          <li>
             <Link to="/login">Login</Link>
-          </HeaderNavLi>
-          <HeaderNavLi>
+          </li>
+          <li>
             <Link to="/cart">Cart</Link>
-          </HeaderNavLi>
-          <HeaderNavLi>
-            <Link to="/checkout">Checkout</Link>
-          </HeaderNavLi>
+          </li>
         </HeaderNavUl>
       </HeaderNavContainer>
     </HeaderContainer>

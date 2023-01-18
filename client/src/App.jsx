@@ -19,7 +19,7 @@ function App() {
   const client = new QueryClient();
 
   return (
-    <div className="App">
+    <main className="flex flex-col min-h-screen">
       <QueryClientProvider client={client}>
         <ReactQueryDevtools initialIsOpen={false} />
         <BrowserRouter>
@@ -42,7 +42,7 @@ function App() {
           </UserProvider>
         </BrowserRouter>
       </QueryClientProvider>
-    </div>
+    </main>
   );
 }
 
