@@ -14,6 +14,7 @@ import Categories from "./pages/Categories/Categories";
 import Category from "./pages/Category/Category";
 import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout";
+import User from "./pages/User/User";
 
 function App() {
   const client = new QueryClient();
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/product/:id" element={<Product />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/user/:id" element={<User />} />
               </Routes>
               <Footer />
             </CartProvider>

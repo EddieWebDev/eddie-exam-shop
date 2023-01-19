@@ -1,5 +1,5 @@
-import { CreateProductForm } from "./productForms/createProductForm";
-import { GetProductByIdForm } from "./productForms/getProductByIdForm";
+import { CreateProductForm } from "./productAdminComponents/createProductForm";
+import { GetProductByIdForm } from "./productAdminComponents/getProductByIdForm";
 import { useGetAllProducts} from "./../../../queries/products/hooks/useGetAllProducts"
 
 export const ProductsAdmin = () => {

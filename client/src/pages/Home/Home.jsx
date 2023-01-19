@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <div>Home</div>
-      {user && <div>Logged in as: {user.email}</div>}
+      {user && <div>Logged in as user id: {user.id}</div>}
     </>
   );
 };

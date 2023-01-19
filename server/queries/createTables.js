@@ -4,6 +4,7 @@ export const createUsersTable = async () => {
   const response = await pool.query(`
     CREATE TABLE IF NOT EXISTS users (
         id INT PRIMARY KEY AUTO_INCREMENT,
+        role VARCHAR(10),
         firstname VARCHAR(250),
         lastname VARCHAR(250),
         email VARCHAR(250),

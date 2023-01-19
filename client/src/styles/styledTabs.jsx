@@ -1,16 +1,15 @@
 import tw from "tailwind-styled-components";
 
-export const TabContainer = tw.div`
+export const StyledTabContainer = tw.div`
 flex
-items-center
 text-white
-h-16
-px-8
-gap-4
-bg-slate-600
+bg-primary-green
+p-4
 `
-
-export const Tab = tw.div`
-h-8
-hover:underline
+export const StyledTabUl = tw.ul`
+flex
+gap-6
+`
+export const StyledTab = tw.li`
+border-b
 `

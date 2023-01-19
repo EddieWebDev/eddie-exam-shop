@@ -7,13 +7,17 @@ import {
 } from "../styles/styledHeader";
 import { useCheckToken } from "../queries/auth/hooks/useCheckToken";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 function Header() {
   const { mutate } = useCheckToken();
 
   useEffect(() => {
     mutate();
-  }, []);
+  }, [mutate]);
+
+  const { user } = useContext(UserContext);
 
   return (
     <HeaderContainer>
@@ -32,14 +36,20 @@ function Header() {
             <Link to="/categories">Categories</Link>
           </li>
           <li>
-            <Link to="/admin">Admin</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
+            {user ? (
+              <Link to={`/user/${user.id}`}>Profile</Link>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
           </li>
           <li>
             <Link to="/cart">Cart</Link>
           </li>
+          {(user && user.role === "admin") &&
+          <li>
+            <Link to="/admin">Admin</Link>
+          </li>
+          }
         </HeaderNavUl>
       </HeaderNavContainer>
     </HeaderContainer>

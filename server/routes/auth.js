@@ -16,13 +16,13 @@ router.post("/login", async (req, res) => {
   }
   if (await bcrypt.compare(password, user.password)) {
     const accessToken = jwt.sign(
-      { id: user.id, email: user.email },
+      { id: user.id, role: user.role },
       process.env.ACCESS_TOKEN_SECRET,
       {
         expiresIn: process.env.ACCESS_TOKEN_EXPIRATION_TIME,
       }
     );
-    const limitedUserInfo = { id: user.id, email: user.email };
+    const limitedUserInfo = { id: user.id, role: user.role };
     Object.assign(limitedUserInfo, jwt.decode(accessToken));
     res
       .cookie("token", accessToken, {

@@ -6,6 +6,7 @@ import {
   updateOrderStatus,
   deleteOrder,
 } from "../queries/orders.js";
+import { authenticateAdminToken } from "../utils/jwtAuth.js"
 
 const router = express.Router();
 
@@ -34,7 +35,7 @@ router.post("/:id", async (req, res) => {
 });
 
 //Update an orders status
-router.patch("/status/:id", async (req, res) => {
+router.patch("/status/:id", authenticateAdminToken, async (req, res) => {
   const id = req.params.id;
   const { status } = req.body;
   const updatedOrder = await updateOrderStatus(status, id);
@@ -45,7 +46,7 @@ router.patch("/status/:id", async (req, res) => {
 });
 
 //Delete an order
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authenticateAdminToken, async (req, res) => {
   const id = req.params.id;
   const result = await deleteOrder(id);
   if (result.affectedRows === 0) {

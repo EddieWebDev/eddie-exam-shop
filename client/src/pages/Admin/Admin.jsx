@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Tab, TabContainer } from "../../styles/styledTabs";
+import { StyledTab, StyledTabUl, StyledTabContainer } from "../../styles/styledTabs";
 import { UsersAdmin } from "./components/usersAdmin";
 import { ProductsAdmin } from "./components/productsAdmin";
 
@@ -10,14 +10,15 @@ function Admin() {
 
   return (
     <section>
-      <h1>Admin</h1>
-      <TabContainer>
-        {tabs.map((tab, i) => (
-          <Tab key={i} onClick={() => setActiveTab(tab)}>
-            {tab}
-          </Tab>
-        ))}
-      </TabContainer>
+      <StyledTabContainer>
+        <StyledTabUl>
+          {tabs.map((tab, i) => (
+            <StyledTab key={i} onClick={() => setActiveTab(tab)}>
+              {tab}
+            </StyledTab>
+          ))}
+        </StyledTabUl>
+      </StyledTabContainer>
       {activeTab === "Users" && <UsersAdmin />}
       {activeTab === "Products" && <ProductsAdmin />}
     </section>

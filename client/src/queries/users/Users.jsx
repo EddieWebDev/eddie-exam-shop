@@ -26,3 +26,8 @@ export const updateUser = async (updatedUser) => {
 export const deleteUser = async (id) => {
   await usersApi.delete(`/api/users/${id}`);
 };
+
+export const searchUser = async(searchWord) => {
+  const response = await usersApi.get(`/api/users/search/${searchWord}`)
+  return response.data
+}
