@@ -10,16 +10,24 @@ export const getUser = async (id) => {
   return user[0];
 };
 export const getUserByEmail = async (email) => {
-  const [user] = await pool.query(`SELECT * FROM users WHERE email = ?`, [email]);
+  const [user] = await pool.query(`SELECT * FROM users WHERE email = ?`, [
+    email,
+  ]);
   return user[0];
 };
 
-export const createUser = async (firstname, lastname, email, password) => {
+export const createUser = async (
+  firstname,
+  lastname,
+  email,
+  password,
+  role = "user"
+) => {
   const [result] = await pool.query(
-    `INSERT INTO users (firstname, lastname, email, password)
-      VALUES(?,?,?,?)
+    `INSERT INTO users (role, firstname, lastname, email, password)
+      VALUES(?,?,?,?,?)
       `,
-    [firstname, lastname, email, password]
+    [role, firstname, lastname, email, password]
   );
   const id = result.insertId;
   return getUser(id);
@@ -40,5 +48,12 @@ export const deleteUser = async (id) => {
       `,
     [id]
   );
+  return result;
+};
+
+export const searchUser = async (searchWord) => {
+  const [result] = await pool.query(`SELECT * FROM users WHERE email LIKE ?`, [
+    `%${searchWord}%`,
+  ]);
   return result;
 };

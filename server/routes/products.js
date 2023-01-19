@@ -8,6 +8,7 @@ import {
   updateProductStock,
   deleteProduct,
 } from "../queries/products.js";
+import { authenticateAdminToken } from "../utils/jwtAuth.js";
 
 const router = express.Router();
 
@@ -45,7 +46,7 @@ router.get("/category/:category", async (req, res) => {
 });
 
 //Create a product
-router.post("/", async (req, res) => {
+router.post("/", authenticateAdminToken,async (req, res) => {
   const { productname, category, description, price, stock } = req.body;
   const newProduct = await createProduct(
     productname,
@@ -58,7 +59,7 @@ router.post("/", async (req, res) => {
 });
 
 //Update a product
-router.put("/:id", async (req, res) => {
+router.put("/:id", authenticateAdminToken,async (req, res) => {
   const id = req.params.id;
   const { productname, category, description, price, stock } = req.body;
   const updatedProduct = await updateProduct(
@@ -87,7 +88,7 @@ router.patch("/stock/:id", async (req, res) => {
 });
 
 //Delete a product
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authenticateAdminToken, async (req, res) => {
   const id = req.params.id;
   const result = await deleteProduct(id);
   if (result.affectedRows === 0) {

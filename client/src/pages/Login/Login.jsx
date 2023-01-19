@@ -7,8 +7,8 @@ const Login = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <section>
-      <h1>Login</h1>
+    <section>   
+      <h1>{user ? "Log out" : "Log in"}</h1>
       <div>{user ? <LogoutButton /> : <LoginForm />}</div>
     </section>
   );

@@ -1,9 +1,8 @@
 import { CreateUserForm } from "../../../components/createUserForm";
 import { GetUserByIdForm } from "../../../components/getUserByIdForm";
-import { useGetAllUsers } from "../../../queries/users/hooks/useGetAllUsers";
+import { SearchUserForm } from "./userAdminComponents/searchUserForm";
 
 export const UsersAdmin = () => {
-  const { data, isError, error, isLoading } = useGetAllUsers();
 
   return (
     <div>
@@ -13,16 +12,7 @@ export const UsersAdmin = () => {
           <GetUserByIdForm />
         </div>
         <div>
-          <h1>Users</h1>
-          {isLoading && <div>Loading...</div>}
-          {isError && <div>{error.message}</div>}
-          <ul>
-            {data?.map((user) => (
-              <li key={user.id}>
-                Id:{user.id} Email:{user.email}
-              </li>
-            ))}
-          </ul>
+          <SearchUserForm />
         </div>
       </div>
     </div>
