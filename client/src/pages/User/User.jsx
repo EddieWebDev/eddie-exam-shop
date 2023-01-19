@@ -1,44 +1,60 @@
 import { useParams } from "react-router-dom";
 import { useGetUserById } from "../../queries/users/hooks/useGetUserById";
+import { useGetUserOrders } from "../../queries/orders/hooks/useGetUserOrders";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { LogoutButton } from "../../components/LogoutButton";
+import { UserDetailsTable } from "./components/userDetailsTable";
+import { UserOrdersTable } from "./components/userOrdersTable";
 
 function Product() {
   const { id } = useParams();
   const { user } = useContext(UserContext);
-  const { data: userData, isLoading, isError, error } = useGetUserById(id);
+  const {
+    data: userData,
+    isLoading: userLoading,
+    isError: isUserError,
+    error: userError,
+  } = useGetUserById(id);
+  const {
+    data: ordersData,
+    isLoading: ordersLoading,
+    isError: isOrdersError,
+    error: ordersError,
+  } = useGetUserOrders(id);
 
   if (!user || (user.id !== parseInt(id) && user.role !== "admin")) {
     return <div>401 Authorization denied</div>;
   }
 
-  if (isLoading) {
-    <div>Loading...</div>;
+  if (userLoading || ordersLoading) {
+    return <div>Loading...</div>;
   }
 
-  if (isError) {
-    <div>{error.message}</div>;
+  if (isUserError || isOrdersError) {
+    return (
+      <>
+        <div>{userError?.message}</div>
+        <div>{ordersError?.message}</div>
+      </>
+    );
   }
 
   return (
-    <section>
-      <h1>User</h1>
-      {userData && (
+    <section className="m-4 flex flex-wrap gap-8">
+      <div>
+        <h3>User</h3>
         <div>
-          <h3>User details</h3>
-          <div>
-            Firstname:{userData.firstname}
-            <br />
-            Lastname:{userData.lastname}
-            <br />
-            Email:{userData.email}
-            <br />
-            Role:{userData.role}
-          </div>
-          {user.id === parseInt(id) && <LogoutButton />}
+          {userData && <UserDetailsTable userData={userData} />}
         </div>
-      )}
+      </div>
+      <div>
+        <h3>Orders</h3>
+        <div>
+          {ordersData && <UserOrdersTable ordersData={ordersData} />}
+        </div>
+      </div>
+      {/* {user.id === parseInt(id) && <LogoutButton />} */}
     </section>
   );
 }

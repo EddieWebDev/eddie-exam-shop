@@ -41,6 +41,7 @@ export const createOrdersTable = async () => {
     CREATE TABLE IF NOT EXISTS orders (
         id INT PRIMARY KEY AUTO_INCREMENT,
         user_id INT NOT NULL,
+        total INT NOT NULL,
         status VARCHAR(250) NOT NULL,
         created TIMESTAMP NOT NULL DEFAULT NOW()
         )

@@ -7,7 +7,7 @@ export const getOrders = async () => {
 
 export const getOrder = async (id) => {
   const [order] = await pool.query(
-    `SELECT p.order_id, product_id, product_name, product_price, product_qty FROM orders o 
+    `SELECT p.order_id, o.total, product_id, product_name, product_price, product_qty FROM orders o 
   JOIN order_products p ON o.id = p.order_id
   WHERE p.order_id = ?`,
     [id]
@@ -15,12 +15,42 @@ export const getOrder = async (id) => {
   return order;
 };
 
-export const createOrder = async (user_id, cart, status = 1) => {
+export const getUserOrders = async (id) => {
+  const [userOrders] = await pool.query(
+    `SELECT p.order_id, o.total, o.status, product_id, product_name, product_price, product_qty FROM orders o
+    JOIN order_products p ON o.id = p.order_id
+    WHERE o.user_id = ?`,
+    [id]
+  );
+  /*  const orders = userOrders.reduce((sortedOrders, order) => {
+    const orderid = order.order_id
+    if(sortedOrders[orderid] === undefined) sortedOrders[orderid] = []
+    sortedOrders[orderid].push(order)
+    return sortedOrders
+  },{})
+  return Object.values(orders) */
+
+  const orders = new Map();
+
+  userOrders.forEach((order) => {
+    const orderid = order.order_id;
+    if (!orders.has(orderid)) {
+      orders.set(orderid, []);
+    }
+    orders.get(orderid).push(order);
+  });
+
+  const ordersArray = Array.from(orders.values());
+  
+  return ordersArray;
+};
+
+export const createOrder = async (user_id, cart, total, status = "Processing") => {
   const [orderResult] = await pool.query(
-    `INSERT INTO orders (user_id, status)
-        VALUES(?,?)
+    `INSERT INTO orders (user_id, total, status)
+        VALUES(?,?,?)
         `,
-    [user_id, status]
+    [user_id, total, status]
   );
   const order_id = await orderResult.insertId;
 
