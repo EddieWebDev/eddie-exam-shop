@@ -2,11 +2,12 @@ import express from "express";
 import {
   getOrders,
   getOrder,
+  getUserOrders,
   createOrder,
   updateOrderStatus,
   deleteOrder,
 } from "../queries/orders.js";
-import { authenticateAdminToken } from "../utils/jwtAuth.js"
+import { authenticateAdminToken } from "../utils/jwtAuth.js";
 
 const router = express.Router();
 
@@ -26,11 +27,22 @@ router.get("/:id", async (req, res) => {
   res.send(order);
 });
 
+//Get a users orders
+router.get("/userorders/:id", async (req, res) => {
+  const id = req.params.id;
+  const userOrders = await getUserOrders(id);
+  if (!userOrders) {
+    return res.status(404).send(`No orders found`);
+  }
+  res.send(userOrders);
+});
+
 //Create an order
 router.post("/:id", async (req, res) => {
   const user_id = req.params.id;
-  const cart = req.body;
-  const newOrder = await createOrder(user_id, cart);
+  const cart = req.body.cart;
+  const total = req.body.total;
+  const newOrder = await createOrder(user_id, cart, total);
   res.status(201).send(newOrder);
 });
 

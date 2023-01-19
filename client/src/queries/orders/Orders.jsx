@@ -14,10 +14,15 @@ export const getOrderById = async (id) => {
   return response.data;
 };
 
+export const getUserOrders = async (id) => {
+  const response = await ordersApi.get(`/api/orders/userorders/${id}`);
+  return response.data;
+};
+
 export const createOrder = async (orderData) => {
-  const {id, cart} = orderData
-  const newOrder = await ordersApi.post(`/api/orders/${id}`, cart);
-  return newOrder
+  const { id, cart, total } = orderData;
+  const newOrder = await ordersApi.post(`/api/orders/${id}`, {cart, total});
+  return newOrder;
 };
 
 export const updateOrderStatus = async (id, updatedStatus) => {

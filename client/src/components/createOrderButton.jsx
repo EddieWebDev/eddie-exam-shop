@@ -7,11 +7,12 @@ import { Link } from "react-router-dom";
 export const CreateOrderButton = () => {
   const cart = useContext(CartContext);
   const { user } = useContext(UserContext);
+  const cartTotal = cart.getCartTotal();
 
   const { mutate, isSuccess, isLoading, data } = useCreateOrder();
 
   const handleCreateOrder = () => {
-    mutate({ id: user.id, cart: cart.items });
+    mutate({ id: user.id, cart: cart.items, total: cartTotal });
   };
 
   if (!user) {
@@ -29,8 +30,8 @@ export const CreateOrderButton = () => {
     console.log(newOrder);
     return (
       <div>
-        <h1>ORDER COMPLETE</h1>
-        <h3>Your order number is {newOrder[0].order_id}</h3>
+        <h3>ORDER COMPLETE</h3>
+        <h5>Your order number is {newOrder[0].order_id}</h5>
         <div>
           {newOrder.map((item, i) => (
             <div key={i}>
@@ -38,6 +39,7 @@ export const CreateOrderButton = () => {
             </div>
           ))}
         </div>
+        <div>Order total: ${newOrder[0].total}</div>
       </div>
     );
   }
