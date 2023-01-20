@@ -6,39 +6,41 @@ import {
   Input,
   FormError,
 } from "../../../../styles/styledForm";
-import { UsersContainer } from "./usersContainer";
+import { SearchResult } from "./searchResult";
 
-export const SearchUserForm = () => {
-
+export const SearchUserForm = ({handleSearchClick}) => {
   const {
     register,
     formState: { errors },
     watch,
-  } = useForm({
-    defaultValues: {
-      searchword: "",
-    },
-  });
+  } = useForm();
 
   const { data, isInitialLoading, isError, error } = useSearchUser(
     watch("searchword")
   );
 
   return (
-    <>
-      <div>SEARCH USER BY EMAIL</div>
+    <div>
+      <div className="w-full text-center text-white bg-primary-green">
+        <h5>Search user by email</h5>
+      </div>
       <FormContainer>
         <Form>
           <Input
             {...register("searchword")}
-            placeholder="email includes..."
-            autoComplete="off"
+            placeholder="Email includes..."
+            type="search"
           />
           <FormError>{errors.searchword?.message}</FormError>
         </Form>
       </FormContainer>
-      <h3>Users</h3>
-      <UsersContainer data={data} isInitialLoading={isInitialLoading} isError={isError} error={error}/>
-    </>
+      <SearchResult
+        data={data}
+        handleSearchClick={handleSearchClick}
+        isInitialLoading={isInitialLoading}
+        isError={isError}
+        error={error}
+      />
+    </div>
   );
 };

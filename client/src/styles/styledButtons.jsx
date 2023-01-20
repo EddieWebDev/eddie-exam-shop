@@ -3,7 +3,6 @@ import tw from "tailwind-styled-components";
 export const StyledLogoutButton = tw.button`
     w-auto
     p-2
-    border
     rounded
     shadow
     bg-primary-darkgreen
@@ -13,7 +12,6 @@ export const StyledLogoutButton = tw.button`
 export const Button = tw.button`
     w-auto
     p-2
-    border
     rounded
     shadow
     bg-primary-darkgreen
@@ -23,7 +21,6 @@ export const Button = tw.button`
 export const TableButton = tw.button`
     w-[35px]
     p-2
-    border
     rounded
     shadow
     bg-primary-darkgreen

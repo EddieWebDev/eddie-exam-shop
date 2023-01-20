@@ -12,8 +12,8 @@ export const UserOrdersTable = (order) => {
 
   return (
     <>
-      {ordersData.map((order, i) => (
-        <Table key={i}>
+      {ordersData.map((order) => (
+        <Table key={order[0].order_id}>
           <thead>
             <TableTheadTr>
               <TableTheadTd>
