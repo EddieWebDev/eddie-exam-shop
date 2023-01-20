@@ -21,7 +21,7 @@ export const getUserOrders = async (id) => {
 
 export const createOrder = async (orderData) => {
   const { id, cart, total } = orderData;
-  const newOrder = await ordersApi.post(`/api/orders/${id}`, {cart, total});
+  const newOrder = await ordersApi.post(`/api/orders/${id}`, { cart, total });
   return newOrder;
 };
 

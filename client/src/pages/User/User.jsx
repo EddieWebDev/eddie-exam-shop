@@ -46,15 +46,13 @@ function Product() {
         <h3>User</h3>
         <div>
           {userData && <UserDetailsTable userData={userData} />}
+          {user.id === parseInt(id) && <LogoutButton />}
         </div>
       </div>
       <div>
         <h3>Orders</h3>
-        <div>
-          {ordersData && <UserOrdersTable ordersData={ordersData} />}
-        </div>
+        <div>{ordersData && <UserOrdersTable ordersData={ordersData} />}</div>
       </div>
-      {/* {user.id === parseInt(id) && <LogoutButton />} */}
     </section>
   );
 }

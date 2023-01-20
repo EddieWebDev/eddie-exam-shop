@@ -10,9 +10,10 @@ export const UserContext = createContext({
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  // Set user login expiration time
   useEffect(() => {
     if (user) {
-      let expTime = (user.exp * 1000) - Date.now();
+      let expTime = user.exp * 1000 - Date.now();
       const autoLogout = setInterval(() => {
         removeCurrentUser();
       }, expTime);
@@ -20,10 +21,12 @@ export const UserProvider = ({ children }) => {
     }
   }, [user]);
 
+  // Set user
   const setCurrentUser = (user) => {
     setUser(user);
   };
 
+  // Remove user
   const removeCurrentUser = () => {
     setUser(null);
   };

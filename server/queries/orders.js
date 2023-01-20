@@ -7,7 +7,7 @@ export const getOrders = async () => {
 
 export const getOrder = async (id) => {
   const [order] = await pool.query(
-    `SELECT p.order_id, o.total, product_id, product_name, product_price, product_qty FROM orders o 
+    `SELECT p.order_id, o.total, o.status, product_id, product_name, product_price, product_qty FROM orders o 
   JOIN order_products p ON o.id = p.order_id
   WHERE p.order_id = ?`,
     [id]
