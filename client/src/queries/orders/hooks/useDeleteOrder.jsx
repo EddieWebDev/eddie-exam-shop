@@ -1,12 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteProduct} from "../Products";
+import { deleteOrder } from "../Orders";
 
-export const useDeleteProduct = () => {
+export const useDeleteOrder = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(deleteProduct,{
+  return useMutation(deleteOrder, {
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["products"] });
-    }},
-  );
+      queryClient.invalidateQueries({ queryKey: ["orders"] });
+      queryClient.invalidateQueries({ queryKey: ["user-orders"] });
+      queryClient.invalidateQueries({ queryKey: ["user-by-id"] });
+    },
+  });
 };

@@ -1,23 +1,18 @@
-import { CreateOrderButton } from "../../components/createOrderButton";
+import { CreateOrder } from "../../components/createOrder";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
 const Checkout = () => {
   const cart = useContext(CartContext);
+  const total = cart.getCartTotal();
+
   return (
-    <>
-      <div>Checkout</div>
+    <section>
       <div>
-        {cart.items.map((item) => (
-          <div key={item.id}>
-            {item.productname}: ${item.price} x {item.qty} = $
-            {item.price * item.qty}
-          </div>
-        ))}
-        Total: ${cart.getCartTotal()}
+        <h3>Checkout</h3>
+        <CreateOrder />
       </div>
-      <CreateOrderButton />
-    </>
+    </section>
   );
 };
 

@@ -1,12 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateProduct } from "../Products";
+import { updateOrder } from "../Orders";
 
-export const useUpdateProduct = () => {
+export const useUpdateOrder = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(updateProduct,{
+  return useMutation(updateOrder, {
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["products"] });
-    }},
-  );
+      queryClient.invalidateQueries({ queryKey: ["orders"] });
+      queryClient.invalidateQueries({ queryKey: ["user-orders"] });
+      queryClient.invalidateQueries({ queryKey: ["user-by-id"] });
+    },
+  });
 };

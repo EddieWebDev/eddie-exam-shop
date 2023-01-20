@@ -32,6 +32,7 @@ export const SubmitInput = tw.input`
     shadow
     bg-green-400
 `
+
 export const FormError = tw.p`
     text-red-700
 `
