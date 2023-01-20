@@ -8,6 +8,14 @@ export const Table = tw.table`
     min-w-[350px]
 `;
 
+export const AdminTable = tw.table`
+    border-4
+    border-primary-darkgreen
+    my-4
+    text-sm
+    min-w-[300px]
+`;
+
 export const TableTheadTr = tw.tr`
     bg-primary-green
     text-white

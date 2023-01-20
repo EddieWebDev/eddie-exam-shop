@@ -1,0 +1,109 @@
+import { useForm } from "react-hook-form";
+import { useUpdateUser } from "../../../../queries/users/hooks/useUpdateUser";
+import { useGetUserById } from "../../../../queries/users/hooks/useGetUserById";
+import {
+  FormContainer,
+  Form,
+  Input,
+  SubmitInput,
+  FormError,
+} from "../../../../styles/styledForm";
+
+export const UpdateUserForm = ({ id }) => {
+
+  const {
+    data: user,
+    isInitialLoading: userIsInitalLoading,
+    isError: userIsError,
+    error: userError,
+  } = useGetUserById(id);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const {
+    mutate,
+    isLoading: updateLoading,
+    isError: updateIsError,
+    error: updateError,
+  } = useUpdateUser();
+
+  const handleUpdateUser = (updatedUser) => {
+    mutate(updatedUser);
+    reset();
+  };
+
+  return (
+    <div>
+      <div className="w-full text-center text-white bg-primary-green">
+        <h5>Update user</h5>
+      </div>
+      {userIsInitalLoading && <h5 className="mt-4 text-center">Loading...</h5>}
+      {userIsError && <h5 className="mt-4 text-center">{userError.message}</h5>}
+      {user && (
+        <FormContainer>
+          <Form className="gap-px"
+            onSubmit={handleSubmit((updatedUser) =>
+              handleUpdateUser(updatedUser)
+            )}
+          >
+            <label htmlFor="firstname">First Name</label>
+            <Input
+              {...register("firstname", {
+                required: "This is required",
+                minLength: { value: 2, message: "Min length 2" },
+              })}
+              placeholder="First Name"
+              defaultValue={user.firstname}
+              id="firstname"
+              type="text"
+            />
+            <FormError>{errors.firstname?.message}</FormError>
+            <label htmlFor="lastname">Last Name</label>
+            <Input
+              {...register("lastname", {
+                required: "This is required",
+                minLength: { value: 4, message: "Min length 4" },
+              })}
+              placeholder="Last Name"
+              defaultValue={user.lastname}
+              id="lastname"
+              type="text"
+            />
+            <FormError>{errors.lastname?.message}</FormError>
+            <label htmlFor="email">Email</label>
+            <Input
+              {...register("email", {
+                required: "This is required",
+                minLength: { value: 4, message: "Min length 4" },
+              })}
+              placeholder="Email"
+              defaultValue={user.email}
+              id="email"
+              type="email"
+            />
+            <FormError>{errors.email?.message}</FormError>
+            <label htmlFor="password">Password</label>
+            <Input
+              {...register("password", {
+                required: "This is required",
+                minLength: { value: 4, message: "Min length 4" },
+              })}
+              placeholder="Password"
+              defaultValue={user.password}
+              id="password"
+              type="password"
+            />
+            <FormError>{errors.password?.message}</FormError>
+            <Input {...register("id")} value={user.id} hidden id="id" />
+            <SubmitInput className="mt-4" type="submit" value="Update user"/>
+          </Form>
+        </FormContainer>
+      )}
+    </div>
+  );
+};
