@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useUpdateProduct } from "../../../../queries/products/hooks/useUpdateProduct";
 import { useGetProductById } from "../../../../queries/products/hooks/useGetProductById";
+import { useGetProductCategories } from "../../../../queries/products/hooks/useGetProductCategories";
 import {
   FormContainer,
   Form,
@@ -8,6 +9,7 @@ import {
   SubmitInput,
   FormError,
   Textarea,
+  Select,
 } from "../../../../styles/styledForm";
 import { useEffect } from "react";
 import { DeleteProductButton } from "./deleteProductButton";
@@ -19,6 +21,20 @@ export const UpdateProductForm = ({ id, setSearchedProductId }) => {
     isError: productIsError,
     error: productError,
   } = useGetProductById(id);
+
+  const {
+    data: categories,
+    isInitialLoading,
+    isError: isCategoriesError,
+    error: categoriesError,
+  } = useGetProductCategories();
+
+  if (isInitialLoading) {
+    console.log("Loading...");
+  }
+  if (isCategoriesError) {
+    console.log(categoriesError);
+  }
 
   const {
     register,
@@ -75,15 +91,22 @@ export const UpdateProductForm = ({ id, setSearchedProductId }) => {
             />
             <FormError>{errors.productname?.message}</FormError>
             <label htmlFor="category">Category Name</label>
-            <Input
+            <Select
               {...register("category", {
-                required: "This is required",
-                minLength: { value: 1, message: "Min length 1" },
+                required: "Category is required",
               })}
-              placeholder="Category"
-              defaultValue={product.category}
-              id="category"
-            />
+              defaultValue=""
+            >
+              <option value="" disabled>
+                --Choose a category--
+              </option>
+              {categories &&
+                categories.map((category, i) => (
+                  <option key={i} value={`${category}`}>
+                    {category}
+                  </option>
+                ))}
+            </Select>
             <FormError>{errors.category?.message}</FormError>
             <label htmlFor="description">Description</label>
             <Textarea

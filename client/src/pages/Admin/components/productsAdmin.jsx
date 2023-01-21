@@ -4,6 +4,7 @@ import { UpdateProductForm } from "./productAdminComponents/updateProductForm";
 import { AdminContainer } from "../../../styles/styledAdmin";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { SearchedProductInfo } from "./productAdminComponents/searchedProductInfo";
 
 export const ProductsAdmin = () => {
   const [searchedProductId, setSearchedProductId] = useState(null);
@@ -29,6 +30,9 @@ export const ProductsAdmin = () => {
           id={searchedProductId}
           setSearchedProductId={setSearchedProductId}
         />
+      </AdminContainer>
+      <AdminContainer>
+        <SearchedProductInfo id={searchedProductId} />
       </AdminContainer>
     </div>
   );
