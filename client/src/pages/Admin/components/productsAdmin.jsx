@@ -1,30 +1,35 @@
 import { CreateProductForm } from "./productAdminComponents/createProductForm";
-import { GetProductByIdForm } from "./productAdminComponents/getProductByIdForm";
-import { useGetAllProducts} from "./../../../queries/products/hooks/useGetAllProducts"
+import { SearchProductForm } from "./productAdminComponents/searchProductForm";
+import { UpdateProductForm } from "./productAdminComponents/updateProductForm";
+import { AdminContainer } from "../../../styles/styledAdmin";
+import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const ProductsAdmin = () => {
-  const { data, isError, error, isLoading } = useGetAllProducts();
+  const [searchedProductId, setSearchedProductId] = useState(null);
+
+  const queryClient = useQueryClient();
+
+  const handleSearchClick = async (id) => {
+    await queryClient.invalidateQueries({ queryKey: ["searched-product"] });
+    await queryClient.invalidateQueries({ queryKey: ["product-by-id"] });
+    setSearchedProductId(id);
+  };
 
   return (
-    <div>
-      <div className="flex">
-        <div className="w-1/3">
-          <CreateProductForm />
-          <GetProductByIdForm />
-        </div>
-        <div>
-          <h1>Products</h1>
-          {isLoading && <div>Loading...</div>}
-          {isError && <div>{error.message}</div>}
-          <ul>
-            {data?.map((product) => (
-              <li key={product.id}>
-                Id:{product.id} Name:{product.productname} Price:{product.price}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+    <div className="flex flex-wrap gap-8">
+      <AdminContainer>
+        <CreateProductForm />
+      </AdminContainer>
+      <AdminContainer>
+        <SearchProductForm handleSearchClick={handleSearchClick} />
+      </AdminContainer>
+      <AdminContainer>
+        <UpdateProductForm
+          id={searchedProductId}
+          setSearchedProductId={setSearchedProductId}
+        />
+      </AdminContainer>
     </div>
   );
 };

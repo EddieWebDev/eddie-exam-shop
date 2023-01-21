@@ -7,6 +7,7 @@ export const useCreateUser = () => {
   return useMutation(createUser, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ["user-by-id"] });
       queryClient.invalidateQueries({ queryKey: ["searched-user"] });
     },
   });

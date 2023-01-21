@@ -6,6 +6,5 @@ export const useGetProductById = (id) => {
     queryKey: ["product-by-id", id],
     queryFn: () => getProductById(id),
     enabled: !!id,
-/*     cacheTime: 0, */
   });
 };

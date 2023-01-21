@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { LoginForm } from "../../components/LoginForm";
-import { LogoutButton } from "../../components/LogoutButton";
+import { LoginForm } from "./components/LoginForm";
+import { LogoutButton } from "./components/LogoutButton";
 import { UserContext } from "../../context/UserContext";
 import { GoogleLogin } from "./components/googleLogin";
 

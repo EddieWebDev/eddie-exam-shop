@@ -70,3 +70,11 @@ export const deleteProduct = async (id) => {
   );
   return result;
 };
+
+export const searchProduct = async (searchWord) => {
+  const [result] = await pool.query(
+    `SELECT * FROM products WHERE productname LIKE ?`,
+    [`%${searchWord}%`]
+  );
+  return result;
+};

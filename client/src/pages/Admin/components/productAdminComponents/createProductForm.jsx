@@ -6,6 +6,7 @@ import {
   Input,
   SubmitInput,
   FormError,
+  Textarea,
 } from "../../../../styles/styledForm";
 
 export const CreateProductForm = () => {
@@ -16,7 +17,7 @@ export const CreateProductForm = () => {
     reset,
   } = useForm();
 
-  const { mutate, isSuccess, isLoading } = useCreateProduct();
+  const { mutate, isSuccess, isLoading, isError, error } = useCreateProduct();
 
   const handleCreateProduct = (newProduct) => {
     mutate(newProduct);
@@ -24,8 +25,10 @@ export const CreateProductForm = () => {
   };
 
   return (
-    <>
-      <div>CREATE Product</div>
+    <div>
+      <div className="w-full text-center text-white bg-primary-green">
+        <h5>Create product</h5>
+      </div>
       <FormContainer>
         <Form
           onSubmit={handleSubmit((newProduct) =>
@@ -48,7 +51,7 @@ export const CreateProductForm = () => {
             placeholder="Category"
           />
           <FormError>{errors.category?.message}</FormError>
-          <Input
+          <Textarea
             {...register("description", {
               required: "Description is required",
               minLength: { value: 1, message: "Min length 1" },
@@ -74,9 +77,10 @@ export const CreateProductForm = () => {
           <FormError>{errors.price?.message}</FormError>
           <SubmitInput type="submit" />
         </Form>
+        {isSuccess && <h5 className="mt-4">Product created</h5>}
+        {isLoading && <h5 className="mt-4">Loading...</h5>}
+        {isError && <h5 className="mt-4">{error.message}</h5>}
       </FormContainer>
-      {isSuccess && <h5>SUCCESS</h5>}
-      {isLoading && <h5>LOADING</h5>}
-    </>
+    </div>
   );
 };
