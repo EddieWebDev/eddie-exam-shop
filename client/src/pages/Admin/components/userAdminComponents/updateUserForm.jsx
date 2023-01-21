@@ -8,9 +8,10 @@ import {
   SubmitInput,
   FormError,
 } from "../../../../styles/styledForm";
+import { useEffect } from "react";
+import { DeleteUserButton } from "./deleteUserButton";
 
-export const UpdateUserForm = ({ id }) => {
-
+export const UpdateUserForm = ({ id, setSearchedUserId }) => {
   const {
     data: user,
     isInitialLoading: userIsInitalLoading,
@@ -37,6 +38,11 @@ export const UpdateUserForm = ({ id }) => {
     reset();
   };
 
+  useEffect(() => {
+    reset();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
   return (
     <div>
       <div className="w-full text-center text-white bg-primary-green">
@@ -46,7 +52,8 @@ export const UpdateUserForm = ({ id }) => {
       {userIsError && <h5 className="mt-4 text-center">{userError.message}</h5>}
       {user && (
         <FormContainer>
-          <Form className="gap-px"
+          <Form
+            className="gap-px"
             onSubmit={handleSubmit((updatedUser) =>
               handleUpdateUser(updatedUser)
             )}
@@ -100,7 +107,12 @@ export const UpdateUserForm = ({ id }) => {
             />
             <FormError>{errors.password?.message}</FormError>
             <Input {...register("id")} value={user.id} hidden id="id" />
-            <SubmitInput className="mt-4" type="submit" value="Update user"/>
+            <SubmitInput className="mt-4" type="submit" value="Update user" />
+            {updateLoading && <h5 className="mt-4 text-center">Loading...</h5>}
+            {updateIsError && (
+              <h5 className="mt-4 text-center">{updateError.message}</h5>
+            )}
+            <DeleteUserButton id={id} setSearchedUserId={setSearchedUserId} />
           </Form>
         </FormContainer>
       )}
