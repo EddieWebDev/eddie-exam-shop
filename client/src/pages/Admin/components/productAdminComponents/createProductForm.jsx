@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useCreateProduct } from "../../../../queries/products/hooks/useCreateProduct";
+import { useGetProductCategories } from "../../../../queries/products/hooks/useGetProductCategories";
 import {
   FormContainer,
   Form,
@@ -7,6 +8,7 @@ import {
   SubmitInput,
   FormError,
   Textarea,
+  Select,
 } from "../../../../styles/styledForm";
 
 export const CreateProductForm = () => {
@@ -18,6 +20,20 @@ export const CreateProductForm = () => {
   } = useForm();
 
   const { mutate, isSuccess, isLoading, isError, error } = useCreateProduct();
+
+  const {
+    data: categories,
+    isInitialLoading,
+    isError: isCategoriesError,
+    error: categoriesError,
+  } = useGetProductCategories();
+
+  if (isInitialLoading) {
+    console.log("Loading...");
+  }
+  if (isCategoriesError) {
+    console.log(categoriesError);
+  }
 
   const handleCreateProduct = (newProduct) => {
     mutate(newProduct);
@@ -43,13 +59,22 @@ export const CreateProductForm = () => {
             placeholder="Product Name"
           />
           <FormError>{errors.productname?.message}</FormError>
-          <Input
+          <Select
             {...register("category", {
               required: "Category is required",
-              minLength: { value: 1, message: "Min length 1" },
             })}
-            placeholder="Category"
-          />
+            defaultValue=""
+          >
+            <option value="" disabled>
+              --Choose a category--
+            </option>
+            {categories &&
+              categories.map((category, i) => (
+                <option key={i} value={`${category}`}>
+                  {category}
+                </option>
+              ))}
+          </Select>
           <FormError>{errors.category?.message}</FormError>
           <Textarea
             {...register("description", {

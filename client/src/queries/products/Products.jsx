@@ -30,7 +30,6 @@ export const createProduct = async (newProduct) => {
 
 export const updateProduct = async (updatedProduct) => {
   const { id } = updatedProduct;
-  console.log(id)
   await productsApi.put(`/api/products/${id}`, updatedProduct);
 };
 
