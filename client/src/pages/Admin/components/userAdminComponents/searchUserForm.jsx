@@ -8,7 +8,7 @@ import {
 } from "../../../../styles/styledForm";
 import { SearchResult } from "./searchResult";
 
-export const SearchUserForm = ({handleSearchClick}) => {
+export const SearchUserForm = ({ handleSearchClick }) => {
   const {
     register,
     formState: { errors },

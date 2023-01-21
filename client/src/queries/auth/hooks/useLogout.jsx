@@ -7,6 +7,7 @@ import { logout } from "../Auth";
 export const useLogout = () => {
   const { removeCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
+
   return useMutation(logout, {
     onSuccess: () => {
       removeCurrentUser();
