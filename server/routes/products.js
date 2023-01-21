@@ -7,6 +7,7 @@ import {
   updateProduct,
   updateProductStock,
   deleteProduct,
+  searchProduct,
 } from "../queries/products.js";
 import { authenticateAdminToken } from "../utils/jwtAuth.js";
 
@@ -31,7 +32,7 @@ router.get("/:id", async (req, res) => {
 //Get product categories
 router.get("/categories/all", async (req, res) => {
   const products = await getProducts();
-  const categories = [...new Set(products.map(product => product.category))]
+  const categories = [...new Set(products.map((product) => product.category))];
   res.send(categories);
 });
 
@@ -46,7 +47,7 @@ router.get("/category/:category", async (req, res) => {
 });
 
 //Create a product
-router.post("/", authenticateAdminToken,async (req, res) => {
+router.post("/", authenticateAdminToken, async (req, res) => {
   const { productname, category, description, price, stock } = req.body;
   const newProduct = await createProduct(
     productname,
@@ -59,7 +60,7 @@ router.post("/", authenticateAdminToken,async (req, res) => {
 });
 
 //Update a product
-router.put("/:id", authenticateAdminToken,async (req, res) => {
+router.put("/:id", authenticateAdminToken, async (req, res) => {
   const id = req.params.id;
   const { productname, category, description, price, stock } = req.body;
   const updatedProduct = await updateProduct(
@@ -95,6 +96,14 @@ router.delete("/:id", authenticateAdminToken, async (req, res) => {
     return res.status(404).send(`No product with id ${id} found`);
   }
   res.status(200).send(`Product with id ${id} deleted`);
+});
+
+//Search a product by name
+router.get("/search/:searchword", async (req, res) => {
+  const searchWord = req.params.searchword;
+  const result = await searchProduct(searchWord);
+  const topFiveResults = result.slice(0, 5);
+  res.send(topFiveResults);
 });
 
 export default router;

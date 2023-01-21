@@ -29,10 +29,16 @@ export const createProduct = async (newProduct) => {
 };
 
 export const updateProduct = async (updatedProduct) => {
-  const { id } = updatedProduct.id;
+  const { id } = updatedProduct;
+  console.log(id)
   await productsApi.put(`/api/products/${id}`, updatedProduct);
 };
 
 export const deleteProduct = async (id) => {
   await productsApi.delete(`/api/products/${id}`);
 };
+
+export const searchProduct = async(searchWord) => {
+  const response = await productsApi.get(`/api/products/search/${searchWord}`)
+  return response.data
+}

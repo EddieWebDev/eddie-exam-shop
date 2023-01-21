@@ -4,9 +4,13 @@ import { createProduct } from "../Products";
 export const useCreateProduct = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(createProduct,{
+  return useMutation(createProduct, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
-    }},
-  );
+      queryClient.invalidateQueries({ queryKey: ["product-by-id"] });
+      queryClient.invalidateQueries({ queryKey: ["searched-product"] });
+      queryClient.invalidateQueries({ queryKey: ["product-categories"] });
+      queryClient.invalidateQueries({ queryKey: ["products-by-category"] });
+    },
+  });
 };

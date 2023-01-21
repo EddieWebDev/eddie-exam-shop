@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import { useCreateUser } from "../queries/users/hooks/useCreateUser";
+import { useCreateUser } from "../../../../queries/users/hooks/useCreateUser";
 import {
   FormContainer,
   Form,
   Input,
   SubmitInput,
   FormError,
-} from "../styles/styledForm";
+} from "../../../../styles/styledForm";
 
 export const CreateUserForm = () => {
   const {
@@ -66,11 +66,11 @@ export const CreateUserForm = () => {
             type="password"
           />
           <FormError>{errors.password?.message}</FormError>
-          <SubmitInput type="submit" value="Create user"/>
+          <SubmitInput type="submit" value="Create user" />
         </Form>
-      {isSuccess && <h5 className="mt-4">User created</h5>}
-      {isLoading && <h5 className="mt-4">Loading...</h5>}
-      {isError && <h5 className="mt-4">{error.message}</h5>}
+        {isSuccess && <h5 className="mt-4">User created</h5>}
+        {isLoading && <h5 className="mt-4">Loading...</h5>}
+        {isError && <h5 className="mt-4">{error.message}</h5>}
       </FormContainer>
     </div>
   );

@@ -1,3 +1,5 @@
+// Unused component
+
 import { useForm } from "react-hook-form";
 import { useDeleteUser } from "../queries/users/hooks/useDeleteUser";
 import {
@@ -8,7 +10,7 @@ import {
   FormError,
 } from "../styles/styledForm";
 
-export const DeleteUserForm = ({user}) => {
+export const DeleteUserForm = ({ user }) => {
   const {
     register,
     handleSubmit,
@@ -17,8 +19,8 @@ export const DeleteUserForm = ({user}) => {
 
   const { mutate, isSuccess } = useDeleteUser();
 
-  if(isSuccess) {
-    return <div>SUCCESS DELETE</div>
+  if (isSuccess) {
+    return <div>SUCCESS DELETE</div>;
   }
 
   const handleDeleteUser = (userId) => {

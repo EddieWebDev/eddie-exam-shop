@@ -27,6 +27,12 @@ export const Input = tw.input`
     hover:shadow-lg
     placeholder: pl-1
 `;
+export const Textarea = tw.textarea`
+    w-4/5
+    rounded
+    hover:shadow-lg
+    placeholder: pl-1
+`;
 
 export const SubmitInput = tw.input`
     min-w-[100px]

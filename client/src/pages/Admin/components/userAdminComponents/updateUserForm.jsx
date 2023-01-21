@@ -107,12 +107,16 @@ export const UpdateUserForm = ({ id, setSearchedUserId }) => {
             />
             <FormError>{errors.password?.message}</FormError>
             <Input {...register("id")} value={user.id} hidden id="id" />
-            <SubmitInput className="mt-4" type="submit" value="Update user" />
-            {updateLoading && <h5 className="mt-4 text-center">Loading...</h5>}
-            {updateIsError && (
-              <h5 className="mt-4 text-center">{updateError.message}</h5>
-            )}
-            <DeleteUserButton id={id} setSearchedUserId={setSearchedUserId} />
+            <div className="flex gap-4">
+              <SubmitInput className="mt-4" type="submit" value="Update user" />
+              {updateLoading && (
+                <h5 className="mt-4 text-center">Loading...</h5>
+              )}
+              {updateIsError && (
+                <h5 className="mt-4 text-center">{updateError.message}</h5>
+              )}
+              <DeleteUserButton id={id} setSearchedUserId={setSearchedUserId} />
+            </div>
           </Form>
         </FormContainer>
       )}

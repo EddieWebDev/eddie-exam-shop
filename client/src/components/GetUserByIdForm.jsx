@@ -1,3 +1,5 @@
+// Unused component
+
 import { useForm } from "react-hook-form";
 import { useGetUserById } from "../queries/users/hooks/useGetUserById";
 import { useState } from "react";
@@ -8,7 +10,7 @@ import {
   SubmitInput,
   FormError,
 } from "../styles/styledForm";
-import { UpdateUserForm } from "./updateUserForm";
+import { UpdateUserForm } from "../pages/Admin/components/userAdminComponents/updateUserForm";
 import { DeleteUserForm } from "./deleteUserForm";
 
 export const GetUserByIdForm = () => {
@@ -51,20 +53,6 @@ export const GetUserByIdForm = () => {
           <DeleteUserForm user={data} />
         </>
       )}
-      {/*       {data &&
-        (data.length === 0 ? (
-          <div>No user with that id</div>
-        ) : (
-          <div>
-            Name:{data[0]?.firstname} Id:{data[0]?.id}
-          </div>
-        ))}
-      {data && (
-        <>
-          <UpdateUserForm user={data[0]}/>
-          <DeleteUserForm user={data[0]}/>
-        </>
-      )} */}
     </>
   );
 };

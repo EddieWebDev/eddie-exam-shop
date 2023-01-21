@@ -45,11 +45,11 @@ function Header() {
           <li>
             <Link to="/cart">Cart</Link>
           </li>
-          {(user && user.role === "admin") &&
-          <li>
-            <Link to="/admin">Admin</Link>
-          </li>
-          }
+          {user && user.role === "admin" && (
+            <li>
+              <Link to="/admin">Admin</Link>
+            </li>
+          )}
         </HeaderNavUl>
       </HeaderNavContainer>
     </HeaderContainer>

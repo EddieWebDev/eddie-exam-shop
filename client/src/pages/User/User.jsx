@@ -3,7 +3,7 @@ import { useGetUserById } from "../../queries/users/hooks/useGetUserById";
 import { useGetUserOrders } from "../../queries/orders/hooks/useGetUserOrders";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
-import { LogoutButton } from "../../components/LogoutButton";
+import { LogoutButton } from "../Login/components/LogoutButton";
 import { UserDetailsTable } from "./components/userDetailsTable";
 import { UserOrdersTable } from "./components/userOrdersTable";
 

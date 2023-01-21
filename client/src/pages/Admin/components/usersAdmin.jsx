@@ -1,4 +1,4 @@
-import { CreateUserForm } from "../../../components/createUserForm";
+import { CreateUserForm } from "./userAdminComponents/createUserForm";
 import { SearchUserForm } from "./userAdminComponents/searchUserForm";
 import { AdminContainer } from "../../../styles/styledAdmin";
 import { UpdateUserForm } from "./userAdminComponents/updateUserForm";
@@ -19,13 +19,13 @@ export const UsersAdmin = () => {
 
   return (
     <div className="flex flex-wrap gap-8">
-      <AdminContainer className="max-h-80">
+      <AdminContainer className="max-h-[410px]">
         <CreateUserForm />
       </AdminContainer>
-      <AdminContainer className="max-h-80">
+      <AdminContainer className="max-h-[410px]">
         <SearchUserForm handleSearchClick={handleSearchClick} />
       </AdminContainer>
-      <AdminContainer className="max-h-[465px]">
+      <AdminContainer className="max-h-[410px]">
         <UpdateUserForm
           id={searchedUserId}
           setSearchedUserId={setSearchedUserId}
