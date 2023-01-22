@@ -120,6 +120,18 @@ export const UpdateProductForm = ({ id, setSearchedProductId }) => {
               id="description"
             />
             <FormError>{errors.description?.message}</FormError>
+            <label htmlFor="product_img_url">Product img url</label>
+            <Input
+            {...register("product_img_url", {
+              required: "Product image url is required",
+              minLength: { value: 2, message: "Min length 2" },
+            })}
+            placeholder="Product Image Url"
+            type="text"
+            defaultValue={product.product_img_url}
+              id="product_img_url"
+          />
+          <FormError>{errors.product_img_url?.message}</FormError>
             <label htmlFor="price">Price</label>
             <Input
               {...register("price", {
