@@ -1,5 +1,10 @@
 import { useGetAllCategories } from "../../queries/categories/hooks/useGetAllCategories";
 import { Link } from "react-router-dom";
+import {
+  CategoryContainer,
+  CategoriesContainer,
+  CategoryImg,
+} from "../../styles/styledCategories";
 
 const Categories = () => {
   const { data, isInitialLoading, isError, error } = useGetAllCategories();
@@ -14,17 +19,24 @@ const Categories = () => {
 
   return (
     <section>
-      <h1>Categories</h1>
       <div>
-        {data &&
-          data.map((category) => (
-            <Link
-              key={category.id}
-              to={`/category/${category.category_name}`}
-            >
-              <div>{category.category_name}</div>
-            </Link>
-          ))}
+        <h3 className="text-4xl">Categories</h3>
+        <CategoriesContainer>
+          {data &&
+            data.map((category) => (
+              <CategoryContainer key={category.id}>
+                <Link
+                  to={`/category/${category.category_name}`}
+                >
+                  <div className="text-3xl">{category.category_name}</div>
+                  <CategoryImg
+                    src={`${category.category_img_url}`}
+                    alt="test"
+                  />
+                </Link>
+              </CategoryContainer>
+            ))}
+        </CategoriesContainer>
       </div>
     </section>
   );

@@ -22,13 +22,6 @@ export const getUserOrders = async (id) => {
     WHERE o.user_id = ?`,
     [id]
   );
-  /*  const orders = userOrders.reduce((sortedOrders, order) => {
-    const orderid = order.order_id
-    if(sortedOrders[orderid] === undefined) sortedOrders[orderid] = []
-    sortedOrders[orderid].push(order)
-    return sortedOrders
-  },{})
-  return Object.values(orders) */
 
   const orders = new Map();
 
