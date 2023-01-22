@@ -25,6 +25,7 @@ function Product() {
             Price:{data.price}
             <br />
             Description:{data.description}
+            <img src={`${data.product_img_url}`} alt="asd" />
           </div>
         )}
       </h2>

@@ -86,6 +86,15 @@ export const CreateProductForm = () => {
           />
           <FormError>{errors.description?.message}</FormError>
           <Input
+            {...register("product_img_url", {
+              required: "Product image url is required",
+              minLength: { value: 2, message: "Min length 2" },
+            })}
+            placeholder="Product Image Url"
+            type="text"
+          />
+          <FormError>{errors.product_img_url?.message}</FormError>
+          <Input
             {...register("price", {
               required: "Price is required",
               minLength: { value: 1, message: "Min length 1" },

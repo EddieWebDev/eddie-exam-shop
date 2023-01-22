@@ -41,11 +41,12 @@ router.get("/category/:category", async (req, res) => {
 
 //Create a product
 router.post("/", authenticateAdminToken, async (req, res) => {
-  const { productname, category, description, price, stock } = req.body;
+  const { productname, category, description, product_img_url, price, stock } = req.body;
   const newProduct = await createProduct(
     productname,
     category,
     description,
+    product_img_url,
     price,
     stock
   );
@@ -55,11 +56,12 @@ router.post("/", authenticateAdminToken, async (req, res) => {
 //Update a product
 router.put("/:id", authenticateAdminToken, async (req, res) => {
   const id = req.params.id;
-  const { productname, category, description, price, stock } = req.body;
+  const { productname, category, description, product_img_url, price, stock } = req.body;
   const updatedProduct = await updateProduct(
     productname,
     category,
     description,
+    product_img_url,
     price,
     stock,
     id

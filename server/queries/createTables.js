@@ -25,6 +25,7 @@ export const createProductsTable = async () => {
         productname VARCHAR(250),
         category VARCHAR(250),
         description VARCHAR(500),
+        product_img_url VARCHAR(1000),
         price INT,
         stock INT,
         created TIMESTAMP NOT NULL DEFAULT NOW(),

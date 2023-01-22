@@ -51,7 +51,7 @@ export const CreateCategoryForm = () => {
             placeholder="Category Image Url"
             type="text"
           />
-          <FormError>{errors.categoryimgurl?.message}</FormError>
+          <FormError>{errors.category_img_url?.message}</FormError>
           <SubmitInput type="submit" value="Create category" />
         </Form>
         {isSuccess && <h5 className="mt-4">Category created</h5>}
