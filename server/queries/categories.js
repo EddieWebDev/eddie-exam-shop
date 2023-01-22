@@ -1,7 +1,7 @@
 import { pool } from "../database.js";
 
 export const getCategories = async () => {
-  const [categories] = await pool.query("SELECT * FROM categories");
+  const [categories] = await pool.query("SELECT * FROM categories ORDER BY category_name");
   return categories;
 };
 
