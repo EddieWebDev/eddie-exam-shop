@@ -73,7 +73,8 @@ export const createCategoriesTable = async () => {
         id INT PRIMARY KEY AUTO_INCREMENT,
         category_name VARCHAR(250) NOT NULL,
         category_img_url VARCHAR(1000),
-        created TIMESTAMP NOT NULL DEFAULT NOW()
+        created TIMESTAMP NOT NULL DEFAULT NOW(),
+        CONSTRAINT uniqeCategory_name UNIQUE(category_name)
         )
     `);
   if (response[0].warningStatus === 0) {
