@@ -1,8 +1,8 @@
-import { useGetProductCategories } from "../../queries/products/hooks/useGetProductCategories";
+import { useGetAllCategories } from "../../queries/categories/hooks/useGetAllCategories";
 import { Link } from "react-router-dom";
 
 const Categories = () => {
-  const { data, isInitialLoading, isError, error } = useGetProductCategories();
+  const { data, isInitialLoading, isError, error } = useGetAllCategories();
 
   if (isInitialLoading) {
     return <div>Loading...</div>;
@@ -17,9 +17,12 @@ const Categories = () => {
       <h1>Categories</h1>
       <div>
         {data &&
-          data.map((category, i) => (
-            <Link key={i} to={`/categories/${category}`}>
-              <div>{category}</div>
+          data.map((category) => (
+            <Link
+              key={category.id}
+              to={`/category/${category.category_name}`}
+            >
+              <div>{category.category_name}</div>
             </Link>
           ))}
       </div>

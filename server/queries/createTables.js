@@ -66,3 +66,17 @@ export const createOrderProductsTable = async () => {
     console.log("OrderProducts table created");
   }
 };
+
+export const createCategoriesTable = async () => {
+  const response = await pool.query(`
+    CREATE TABLE IF NOT EXISTS categories (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        category_name VARCHAR(250) NOT NULL,
+        category_img_url VARCHAR(1000),
+        created TIMESTAMP NOT NULL DEFAULT NOW()
+        )
+    `);
+  if (response[0].warningStatus === 0) {
+    console.log("Categories table created");
+  }
+};

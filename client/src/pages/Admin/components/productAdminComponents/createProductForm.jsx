@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useCreateProduct } from "../../../../queries/products/hooks/useCreateProduct";
-import { useGetProductCategories } from "../../../../queries/products/hooks/useGetProductCategories";
+import { useGetAllCategories } from "../../../../queries/categories/hooks/useGetAllCategories";
 import {
   FormContainer,
   Form,
@@ -26,19 +26,20 @@ export const CreateProductForm = () => {
     isInitialLoading,
     isError: isCategoriesError,
     error: categoriesError,
-  } = useGetProductCategories();
-
-  if (isInitialLoading) {
-    console.log("Loading...");
-  }
-  if (isCategoriesError) {
-    console.log(categoriesError);
-  }
+  } = useGetAllCategories();
 
   const handleCreateProduct = (newProduct) => {
     mutate(newProduct);
     reset();
   };
+
+  if (isInitialLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isCategoriesError) {
+    return <div>{categoriesError.message}</div>;
+  }
 
   return (
     <div>
@@ -69,9 +70,9 @@ export const CreateProductForm = () => {
               --Choose a category--
             </option>
             {categories &&
-              categories.map((category, i) => (
-                <option key={i} value={`${category}`}>
-                  {category}
+              categories.map((category) => (
+                <option key={category.id} value={`${category.category_name}`}>
+                  {category.category_name}
                 </option>
               ))}
           </Select>
