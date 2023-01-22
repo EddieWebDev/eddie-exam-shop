@@ -36,3 +36,11 @@ export const DeleteButton = tw.button`
     text-white
     hover:scale-110 hover:transition duration-300 cursor-pointer
 `;
+export const DeleteButtonSmall = tw.button`
+    p-1
+    rounded
+    shadow
+    bg-red-600
+    text-white
+    hover:scale-110 hover:transition duration-300 cursor-pointer
+`;

@@ -26,14 +26,14 @@ router.get("/:id", async (req, res) => {
 });
 
 //Create a category
-router.post("/", async (req, res) => {
+router.post("/", authenticateAdminToken, async (req, res) => {
   const { category_name, category_img_url } = req.body;
   const newCategory = await createCategory(category_name, category_img_url);
   res.status(201).send(newCategory);
 });
 
 //Delete a category
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authenticateAdminToken, async (req, res) => {
   const id = req.params.id;
   const result = await deleteCategory(id);
   if (result.affectedRows === 0) {
