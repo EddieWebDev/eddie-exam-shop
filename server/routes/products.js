@@ -29,13 +29,6 @@ router.get("/:id", async (req, res) => {
   res.send(product);
 });
 
-//Get product categories
-router.get("/categories/all", async (req, res) => {
-  const products = await getProducts();
-  const categories = [...new Set(products.map((product) => product.category))];
-  res.send(categories);
-});
-
 //Get products by category
 router.get("/category/:category", async (req, res) => {
   const category = req.params.category;

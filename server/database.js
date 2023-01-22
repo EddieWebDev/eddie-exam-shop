@@ -1,7 +1,13 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
 dotenv.config();
-import { createUsersTable, createProductsTable, createOrdersTable, createOrderProductsTable } from "./queries/createTables.js";
+import {
+  createUsersTable,
+  createProductsTable,
+  createOrdersTable,
+  createOrderProductsTable,
+  createCategoriesTable,
+} from "./queries/createTables.js";
 
 export const pool = mysql
   .createPool({
@@ -12,9 +18,10 @@ export const pool = mysql
   })
   .promise();
 
-if(pool){
-    createUsersTable()
-    createProductsTable()
-    createOrdersTable()
-    createOrderProductsTable()
+if (pool) {
+  createUsersTable();
+  createProductsTable();
+  createOrdersTable();
+  createOrderProductsTable();
+  createCategoriesTable();
 }

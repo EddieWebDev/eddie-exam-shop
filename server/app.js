@@ -3,6 +3,7 @@ import userRoutes from "./routes/users.js";
 import productRoutes from "./routes/products.js";
 import orderRoutes from "./routes/orders.js";
 import authRoutes from "./routes/auth.js";
+import categoryRoutes from "./routes/categories.js";
 import cookieParser from "cookie-parser";
 import { authenticateToken } from "./utils/jwtAuth.js";
 
@@ -15,6 +16,7 @@ app.use(cookieParser());
 
 app.use("/api/users", authenticateToken, userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/categories", categoryRoutes);
 app.use("/api/orders", authenticateToken, orderRoutes);
 app.use("/api/auth", authRoutes);
 

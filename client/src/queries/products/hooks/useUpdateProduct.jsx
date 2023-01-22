@@ -9,7 +9,6 @@ export const useUpdateProduct = () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
       queryClient.invalidateQueries({ queryKey: ["product-by-id"] });
       queryClient.invalidateQueries({ queryKey: ["searched-product"] });
-      queryClient.invalidateQueries({ queryKey: ["product-categories"] });
       queryClient.invalidateQueries({ queryKey: ["products-by-category"] });
     },
   });

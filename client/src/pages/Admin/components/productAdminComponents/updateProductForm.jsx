@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useUpdateProduct } from "../../../../queries/products/hooks/useUpdateProduct";
 import { useGetProductById } from "../../../../queries/products/hooks/useGetProductById";
-import { useGetProductCategories } from "../../../../queries/products/hooks/useGetProductCategories";
+import { useGetAllCategories } from "../../../../queries/categories/hooks/useGetAllCategories";
 import {
   FormContainer,
   Form,
@@ -27,14 +27,7 @@ export const UpdateProductForm = ({ id, setSearchedProductId }) => {
     isInitialLoading,
     isError: isCategoriesError,
     error: categoriesError,
-  } = useGetProductCategories();
-
-  if (isInitialLoading) {
-    console.log("Loading...");
-  }
-  if (isCategoriesError) {
-    console.log(categoriesError);
-  }
+  } = useGetAllCategories();
 
   const {
     register,
@@ -59,6 +52,14 @@ export const UpdateProductForm = ({ id, setSearchedProductId }) => {
     reset();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  if (isInitialLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isCategoriesError) {
+    return <div>{categoriesError.message}</div>;
+  }
 
   return (
     <div>
@@ -101,9 +102,9 @@ export const UpdateProductForm = ({ id, setSearchedProductId }) => {
                 --Choose a category--
               </option>
               {categories &&
-                categories.map((category, i) => (
-                  <option key={i} value={`${category}`}>
-                    {category}
+                categories.map((category) => (
+                  <option key={category.id} value={`${category.category_name}`}>
+                    {category.category_name}
                   </option>
                 ))}
             </Select>

@@ -14,11 +14,6 @@ export const getProductById = async (id) => {
   return response.data;
 };
 
-export const getProductCategories = async () => {
-  const response = await productsApi.get("/api/products/categories/all");
-  return response.data;
-};
-
 export const getProductsByCategory = async (category) => {
   const response = await productsApi.get(`/api/products/category/${category}`);
   return response.data;
@@ -37,7 +32,7 @@ export const deleteProduct = async (id) => {
   await productsApi.delete(`/api/products/${id}`);
 };
 
-export const searchProduct = async(searchWord) => {
-  const response = await productsApi.get(`/api/products/search/${searchWord}`)
-  return response.data
-}
+export const searchProduct = async (searchWord) => {
+  const response = await productsApi.get(`/api/products/search/${searchWord}`);
+  return response.data;
+};
