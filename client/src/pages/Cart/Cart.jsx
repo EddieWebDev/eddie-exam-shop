@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-import { CartTable } from "../../components/cartTable";
+import { CartTable } from "./components/cartTable";
 import { Link } from "react-router-dom";
 import { Button } from "../../styles/styledButtons";
 

@@ -26,18 +26,22 @@ export const CartProvider = ({ children }) => {
   };
 
   // Add one to cart
-  const addOneToCart = (id, productname, price) => {
+  const addOneToCart = (id, productname, price, stock) => {
     const qty = getProductQty(id);
-
-    if (!qty) {
-      setCartProducts([...cartProducts, { id, productname, price, qty: 1 }]);
-    } else {
-      setCartProducts(
-        cartProducts.map((product) =>
-          product.id === id ? { ...product, qty: product.qty + 1 } : product
-        )
-      );
-    }
+    if (qty < stock) {
+      if (!qty) {
+        setCartProducts([
+          ...cartProducts,
+          { id, productname, price, qty: 1, stock },
+        ]);
+      } else {
+        setCartProducts(
+          cartProducts.map((product) =>
+            product.id === id ? { ...product, qty: product.qty + 1 } : product
+          )
+        );
+      }
+    } else return;
   };
 
   // Remove one from cart
@@ -78,12 +82,9 @@ export const CartProvider = ({ children }) => {
 
   // Number of products in cart
   const totalQtyCart = () => {
-    const total = cartProducts.reduce(
-      (sum, product) => sum + product.qty,
-      0
-    )
-    return total
-  }
+    const total = cartProducts.reduce((sum, product) => sum + product.qty, 0);
+    return total;
+  };
 
   const contextValue = {
     items: cartProducts,

@@ -56,10 +56,13 @@ export const updateProduct = async (
 };
 
 export const updateProductStock = async (stock, id) => {
+  const product = await getProduct(id);
+  const newStock = product.stock - stock;
+
   await pool.query(
     `UPDATE products SET stock = ? WHERE id = ?
         `,
-    [stock, id]
+    [newStock, id]
   );
   return getProduct(id);
 };

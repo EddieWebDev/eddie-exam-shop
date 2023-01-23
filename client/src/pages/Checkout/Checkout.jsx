@@ -1,4 +1,4 @@
-import { CreateOrder } from "../../components/createOrder";
+import { CreateOrder } from "./components/createOrder";
 
 const Checkout = () => {
 
