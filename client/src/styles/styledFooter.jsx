@@ -12,6 +12,7 @@ export const FooterContainer = tw.footer`
 
 export const FooterLogoContainer = tw.div`
     w-1/2
+    min-w-[200px]
     flex
     justify-center
     items-center

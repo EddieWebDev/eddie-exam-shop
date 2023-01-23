@@ -23,7 +23,7 @@ export const SearchedProductInfo = ({ id }) => {
       <div className="w-full text-center text-white bg-primary-green">
         <h5>Product info</h5>
       </div>
-      <div className="flex p-4 max-w-full">
+      <div className="flex max-w-full">
         <div className="flex flex-col items-center">
           {data && (
             <>
@@ -56,7 +56,7 @@ export const SearchedProductInfo = ({ id }) => {
               <div>
                 <b>Description</b>
               </div>
-              <div className="max-w-full">
+              <div className="p-4 max-w-full">
                 <p className="break-normal overflow-auto">{data.description}</p>
               </div>
             </>
