@@ -39,9 +39,10 @@ export const LoginForm = () => {
             required: "Required",
           })}
           placeholder="Password"
+          type="password"
         />
         <FormError>{errors.password?.message}</FormError>
-        <SubmitInput type="submit" />
+        <SubmitInput type="submit" value="Log in" />
       </Form>
       {isLoading && <div>Loading...</div>}
       {isError && (
