@@ -47,7 +47,7 @@ export const GoogleLogin = () => {
   }
 
   return (
-    <div>
+    <div className="flex justify-center">
       <div className="my-4" id="signInDiv"></div>
     </div>
   );
