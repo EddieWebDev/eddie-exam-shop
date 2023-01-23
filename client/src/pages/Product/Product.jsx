@@ -31,25 +31,50 @@ function Product() {
           <h2>{data.productname}</h2>
           <SingleProductContainer>
             <div className="flex flex-wrap max-w-full p-4 gap-4">
-            <SingleProductImg
-              src={`${data.product_img_url}`}
-              alt={`${data.productname}`}
-            />
-            <SingleProductInfoContainer>
-              <h5><b>Product id: </b>{data.id}</h5>
-              <h5><b>Price: </b>${data.price}</h5>
-              <h5><b>Stock: </b>{data.stock}</h5>
-              <h5><b>Category: </b>{data.category}</h5>
-              <h5><b>Description: </b><p className="text-sm">{data.description}</p></h5>
-            </SingleProductInfoContainer>
+              <SingleProductImg
+                src={`${data.product_img_url}`}
+                alt={`${data.productname}`}
+              />
+              <SingleProductInfoContainer>
+                <h5>
+                  <b>Product id: </b>
+                  {data.id}
+                </h5>
+                <h5>
+                  <b>Price: </b>${data.price}
+                </h5>
+                <h5>
+                  <b>Stock: </b>
+                  {data.stock}
+                </h5>
+                <h5>
+                  <b>Category: </b>
+                  {data.category}
+                </h5>
+                <h5>
+                  <b>Description: </b>
+                  <p className="text-sm">{data.description}</p>
+                </h5>
+              </SingleProductInfoContainer>
             </div>
-            <AddToCartButton
-              onClick={() =>
-                cart.addOneToCart(data.id, data.productname, data.price)
-              }
-            >
-              Add to cart
-            </AddToCartButton>
+            {data.stock < 1 ? (
+              <AddToCartButton className="bg-primary-green" disabled>
+                Out of stock
+              </AddToCartButton>
+            ) : (
+              <AddToCartButton
+                onClick={() =>
+                  cart.addOneToCart(
+                    data.id,
+                    data.productname,
+                    data.price,
+                    data.stock
+                  )
+                }
+              >
+                Add to cart
+              </AddToCartButton>
+            )}
           </SingleProductContainer>
         </div>
       )}

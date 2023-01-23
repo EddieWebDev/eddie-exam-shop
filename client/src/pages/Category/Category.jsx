@@ -35,20 +35,29 @@ const Categories = () => {
               <ProductContainer key={product.id}>
                 <Link to={`/product/${product.id}`}>
                   <h3>{product.productname}</h3>
-                  <ProductImg src={`${product.product_img_url}`} alt={`${product.productname}`} />
+                  <ProductImg
+                    src={`${product.product_img_url}`}
+                    alt={`${product.productname}`}
+                  />
                 </Link>
-
-                <AddToCartButton
-                  onClick={() =>
-                    cart.addOneToCart(
-                      product.id,
-                      product.productname,
-                      product.price
-                    )
-                  }
-                >
-                  Add to cart
-                </AddToCartButton>
+                {product.stock < 1 ? (
+                  <AddToCartButton className="bg-primary-green" disabled>
+                    Out of stock
+                  </AddToCartButton>
+                ) : (
+                  <AddToCartButton
+                    onClick={() =>
+                      cart.addOneToCart(
+                        product.id,
+                        product.productname,
+                        product.price,
+                        product.stock
+                      )
+                    }
+                  >
+                    Add to cart
+                  </AddToCartButton>
+                )}
               </ProductContainer>
             ))}
         </ProductsContainer>

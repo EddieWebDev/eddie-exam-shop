@@ -1,4 +1,4 @@
-// Unused component
+/* // Unused component
 
 import { useForm } from "react-hook-form";
 import { useGetUserById } from "../queries/users/hooks/useGetUserById";
@@ -56,3 +56,4 @@ export const GetUserByIdForm = () => {
     </>
   );
 };
+ */

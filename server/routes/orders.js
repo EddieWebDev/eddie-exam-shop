@@ -7,6 +7,7 @@ import {
   updateOrderStatus,
   deleteOrder,
 } from "../queries/orders.js";
+import { updateProductStock } from "../queries/products.js";
 import { authenticateAdminToken } from "../utils/jwtAuth.js";
 
 const router = express.Router();
@@ -42,6 +43,7 @@ router.post("/:id", async (req, res) => {
   const user_id = req.params.id;
   const cart = req.body.cart;
   const total = req.body.total;
+  await cart.forEach((product) => updateProductStock(product.qty, product.id));
   const newOrder = await createOrder(user_id, cart, total);
   res.status(201).send(newOrder);
 });

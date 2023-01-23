@@ -1,4 +1,4 @@
-// Unused component
+/* // Unused component
 
 import { useForm } from "react-hook-form";
 import { useDeleteUser } from "../queries/users/hooks/useDeleteUser";
@@ -46,3 +46,4 @@ export const DeleteUserForm = ({ user }) => {
     </>
   );
 };
+ */
