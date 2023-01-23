@@ -2,6 +2,12 @@ import { useGetProductsByCategory } from "../../queries/products/hooks/useGetPro
 import { Link, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import {
+  ProductsContainer,
+  ProductContainer,
+  ProductImg,
+} from "../../styles/styledProducts";
+import { AddToCartButton } from "../../styles/styledButtons";
 
 const Categories = () => {
   const { category } = useParams();
@@ -21,28 +27,31 @@ const Categories = () => {
 
   return (
     <section>
-      <h1>{category}</h1>
       <div>
-        {data &&
-          data.map((product) => (
-            <div key={product.id}>
-              <Link to={`/product/${product.id}`}>
-                <div>{product.productname}</div>
-              </Link>
+        <h2>{category}</h2>
+        <ProductsContainer>
+          {data &&
+            data.map((product) => (
+              <ProductContainer key={product.id}>
+                <Link to={`/product/${product.id}`}>
+                  <h3>{product.productname}</h3>
+                  <ProductImg src={`${product.product_img_url}`} alt={`${product.productname}`} />
+                </Link>
 
-              <button
-                onClick={() =>
-                  cart.addOneToCart(
-                    product.id,
-                    product.productname,
-                    product.price
-                  )
-                }
-              >
-                Add to cart
-              </button>
-            </div>
-          ))}
+                <AddToCartButton
+                  onClick={() =>
+                    cart.addOneToCart(
+                      product.id,
+                      product.productname,
+                      product.price
+                    )
+                  }
+                >
+                  Add to cart
+                </AddToCartButton>
+              </ProductContainer>
+            ))}
+        </ProductsContainer>
       </div>
     </section>
   );

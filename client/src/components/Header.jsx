@@ -9,6 +9,7 @@ import { useCheckToken } from "../queries/auth/hooks/useCheckToken";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { CartContext } from "../context/CartContext";
 
 function Header() {
   const { mutate } = useCheckToken();
@@ -18,6 +19,9 @@ function Header() {
   }, [mutate]);
 
   const { user } = useContext(UserContext);
+  const { totalQtyCart } = useContext(CartContext);
+
+  const total = totalQtyCart();
 
   return (
     <HeaderContainer>
@@ -43,7 +47,10 @@ function Header() {
             )}
           </li>
           <li>
-            <Link to="/cart">Cart</Link>
+            <Link className="flex gap-1" to="/cart">
+              Cart
+              {total === 0 ? "" : <p>&#40;{total}&#41;</p>}
+            </Link>
           </li>
           {user && user.role === "admin" && (
             <li>
