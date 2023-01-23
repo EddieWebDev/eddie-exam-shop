@@ -20,7 +20,7 @@ const Categories = () => {
   return (
     <section>
       <div>
-        <h3 className="text-4xl">Categories</h3>
+        <h2>Categories</h2>
         <CategoriesContainer>
           {data &&
             data.map((category) => (
@@ -28,10 +28,10 @@ const Categories = () => {
                 <Link
                   to={`/category/${category.category_name}`}
                 >
-                  <div className="text-3xl">{category.category_name}</div>
+                  <h3>{category.category_name}</h3>
                   <CategoryImg
                     src={`${category.category_img_url}`}
-                    alt="test"
+                    alt={`${category.category_name}`}
                   />
                 </Link>
               </CategoryContainer>

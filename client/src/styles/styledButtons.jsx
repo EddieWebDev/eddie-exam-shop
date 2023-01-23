@@ -18,6 +18,15 @@ export const Button = tw.button`
     text-white
 `;
 
+export const AddToCartButton = tw.button`
+    w-full
+    p-2
+    rounded
+    shadow
+    bg-primary-darkgreen
+    text-white
+`;
+
 export const TableButton = tw.button`
     w-[35px]
     p-2

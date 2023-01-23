@@ -10,6 +10,14 @@ import {
 
 export const SearchedUserOrders = ({ id }) => {
   const { data: orders, isLoading, isError, error } = useGetUserOrders(id);
+  
+  if (isLoading) {
+    return <div className="text-center">Loading...</div>;
+  }
+
+  if (isError) {
+    return <div className="text-center">{error.message}</div>;
+  }
   return (
     <div>
       <div className="w-full text-center text-white bg-primary-green">
