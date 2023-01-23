@@ -22,7 +22,7 @@ export const CreateOrder = () => {
     return (
       <div>
         <Link to="/login">
-          <h3>Log in to place an order</h3>
+          <h5 className="hover:scale-110 hover:text-primary-darkbeige hover:transition duration-300">Log in to place an order</h5>
         </Link>
       </div>
     );

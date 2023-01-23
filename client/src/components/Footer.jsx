@@ -17,15 +17,12 @@ function Footer() {
           <li>
             <Link to="/categories">Categories</Link>
           </li>
-          <li>
-            <Link to="/cart">Cart</Link>
-          </li>
         </FooterNavUl>
       </FooterNavContainer>
 
       <FooterLogoContainer>
         <Link to="/">
-          <h1>LOGO</h1>
+          <h1>Fruit City</h1>
         </Link>
       </FooterLogoContainer>
     </FooterContainer>

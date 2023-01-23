@@ -3,9 +3,12 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
+      sans: ["Graphik", "sans-serif"],
     },
     extend: {
+      backgroundImage: {
+        'fruits': "url('../src/images/homeBgFruits.png')",
+      },
       colors: {
         primary: {
           darkgreen: "#373D2F",
