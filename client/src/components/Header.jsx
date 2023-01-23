@@ -27,7 +27,7 @@ function Header() {
     <HeaderContainer>
       <HeaderLogoContainer>
         <Link to="/">
-          <h1>LOGO</h1>
+          <h1>Fruit City</h1>
         </Link>
       </HeaderLogoContainer>
 

@@ -1,15 +1,11 @@
 import { CreateOrder } from "../../components/createOrder";
-import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
 
 const Checkout = () => {
-  const cart = useContext(CartContext);
-  const total = cart.getCartTotal();
 
   return (
     <section>
-      <div>
-        <h3>Checkout</h3>
+      <div className="flex flex-col gap-4">
+        <h2>Checkout</h2>
         <CreateOrder />
       </div>
     </section>
