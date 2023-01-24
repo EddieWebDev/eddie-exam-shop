@@ -13,14 +13,14 @@ export const CreateOrder = () => {
   const { user } = useContext(UserContext);
 
   const cartTotal = cart.getCartTotal();
-  const cartItems = cart.items.map((item) => {
-    delete item.stock;
-    return item;
-  });
 
   const { mutate, isError, error, isLoading, data } = useCreateOrder();
 
   const handleCreateOrder = () => {
+    const cartItems = cart.items.map((item) => {
+      delete item.stock;
+      return item;
+    });
     mutate({ id: user.id, cart: cartItems, total: cartTotal });
   };
 
