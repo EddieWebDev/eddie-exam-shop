@@ -5,8 +5,8 @@ const authApi = axios.create({
 });
 
 export const login = async (loginCredentials) => {
-  const {data} = await authApi.post(`/api/auth/login`, loginCredentials);
-  return data
+  const { data } = await authApi.post(`/api/auth/login`, loginCredentials);
+  return data;
 };
 
 export const logout = async () => {
@@ -14,11 +14,11 @@ export const logout = async () => {
 };
 
 export const checkToken = async () => {
-  const {data} = await authApi.post(`/api/auth/checktoken`);
-  return data
+  const { data } = await authApi.post(`/api/auth/checktoken`);
+  return data;
 };
 
 export const googleLogin = async (googleUser) => {
-  const {data} = await authApi.post(`/api/auth/google/login`, googleUser);
-  return data
+  const { data } = await authApi.post(`/api/auth/google/login`, googleUser);
+  return data;
 };

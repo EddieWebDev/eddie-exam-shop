@@ -6,12 +6,12 @@ const usersApi = axios.create({
 
 export const getAllUsers = async () => {
   const response = await usersApi.get("/api/users");
-  return response.data
+  return response.data;
 };
 
 export const getUserById = async (id) => {
   const response = await usersApi.get(`/api/users/${id}`);
-  return response.data
+  return response.data;
 };
 
 export const createUser = async (newUser) => {
@@ -19,7 +19,7 @@ export const createUser = async (newUser) => {
 };
 
 export const updateUser = async (updatedUser) => {
-  const {id} = updatedUser
+  const { id } = updatedUser;
   await usersApi.put(`/api/users/${id}`, updatedUser);
 };
 
@@ -27,7 +27,7 @@ export const deleteUser = async (id) => {
   await usersApi.delete(`/api/users/${id}`);
 };
 
-export const searchUser = async(searchWord) => {
-  const response = await usersApi.get(`/api/users/search/${searchWord}`)
-  return response.data
-}
+export const searchUser = async (searchWord) => {
+  const response = await usersApi.get(`/api/users/search/${searchWord}`);
+  return response.data;
+};

@@ -9,8 +9,13 @@ import {
 } from "../../../../styles/styledTable";
 
 export const SearchedUserOrders = ({ id }) => {
-  const { data: orders, isInitialLoading, isError, error } = useGetUserOrders(id);
-  
+  const {
+    data: orders,
+    isInitialLoading,
+    isError,
+    error,
+  } = useGetUserOrders(id);
+
   if (isInitialLoading) {
     return <div className="text-center">Loading...</div>;
   }

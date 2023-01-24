@@ -10,7 +10,7 @@ export const CategoriesAdmin = () => {
         <CreateCategoryForm />
       </AdminContainer>
       <AdminContainer>
-        <ShowCategories/>
+        <ShowCategories />
       </AdminContainer>
     </div>
   );

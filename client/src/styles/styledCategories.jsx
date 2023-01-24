@@ -20,4 +20,4 @@ export const CategoryImg = tw.img`
     my-4
     h-56
     object-contain
-`
+`;

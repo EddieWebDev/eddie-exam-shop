@@ -21,7 +21,8 @@ export const GetProductByIdForm = () => {
     reset,
   } = useForm();
 
-  const { data, isInitialLoading, isError, error } = useGetProductById(searchId);
+  const { data, isInitialLoading, isError, error } =
+    useGetProductById(searchId);
 
   const handleGetProductById = (productId) => {
     let { id } = productId;

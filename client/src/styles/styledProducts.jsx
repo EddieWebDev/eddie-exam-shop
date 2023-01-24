@@ -21,4 +21,4 @@ export const ProductImg = tw.img`
     w-96
     h-56
     object-contain
-`
+`;
