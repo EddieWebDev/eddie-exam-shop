@@ -25,8 +25,7 @@ export const CreateAccountForm = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="w-full text-center text-white bg-primary-green">
-      </div>
+      <div className="w-full text-center text-white bg-primary-green"></div>
       <FormContainer>
         <Form onSubmit={handleSubmit((newUser) => handleCreateUser(newUser))}>
           <Input

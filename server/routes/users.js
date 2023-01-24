@@ -72,7 +72,7 @@ router.delete("/:id", authenticateAdminToken, async (req, res) => {
 router.get("/search/:searchword", authenticateAdminToken, async (req, res) => {
   const searchWord = req.params.searchword;
   const result = await searchUser(searchWord);
-  const topFiveResults = result.slice(0,5)
+  const topFiveResults = result.slice(0, 5);
   res.send(topFiveResults);
 });
 

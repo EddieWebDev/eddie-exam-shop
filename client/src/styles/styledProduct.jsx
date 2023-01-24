@@ -1,6 +1,5 @@
 import tw from "tailwind-styled-components";
 
-
 export const SingleProductContainer = tw.div`
     flex
     flex-col
@@ -17,7 +16,7 @@ export const SingleProductImg = tw.img`
     h-56
     my-4
     object-contain
-`
+`;
 
 export const SingleProductInfoContainer = tw.div`
    flex
@@ -26,4 +25,4 @@ export const SingleProductInfoContainer = tw.div`
    justify-center
    gap-4
    max-w-sm
-`
+`;

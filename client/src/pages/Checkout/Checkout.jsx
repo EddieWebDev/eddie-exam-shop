@@ -1,7 +1,6 @@
 import { CreateOrder } from "./components/createOrder";
 
 const Checkout = () => {
-
   return (
     <section>
       <div className="flex flex-col gap-4">

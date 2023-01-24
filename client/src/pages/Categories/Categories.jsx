@@ -25,9 +25,7 @@ const Categories = () => {
           {data &&
             data.map((category) => (
               <CategoryContainer key={category.id}>
-                <Link
-                  to={`/category/${category.category_name}`}
-                >
+                <Link to={`/category/${category.category_name}`}>
                   <h3>{category.category_name}</h3>
                   <CategoryImg
                     src={`${category.category_img_url}`}

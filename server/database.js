@@ -7,7 +7,7 @@ import {
   createOrdersTable,
   createOrderProductsTable,
   createCategoriesTable,
-/*   populateProducts,
+  /*   populateProducts,
   populateCategories, */
 } from "./queries/createTables.js";
 
@@ -26,6 +26,6 @@ if (pool) {
   createOrdersTable();
   createOrderProductsTable();
   createCategoriesTable();
- /*  populateProducts()
+  /*  populateProducts()
   populateCategories() */
 }

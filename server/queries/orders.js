@@ -34,11 +34,16 @@ export const getUserOrders = async (id) => {
   });
 
   const ordersArray = Array.from(orders.values());
-  
+
   return ordersArray;
 };
 
-export const createOrder = async (user_id, cart, total, status = "Processing") => {
+export const createOrder = async (
+  user_id,
+  cart,
+  total,
+  status = "Processing"
+) => {
   const [orderResult] = await pool.query(
     `INSERT INTO orders (user_id, total, status)
         VALUES(?,?,?)
