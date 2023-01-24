@@ -1,6 +1,6 @@
 # Getting Started with Eddie Exam Shop
 
-1. Start WAMP, MAMP or similar that use mysql. You also need an up to date Node version to run the project => https://nodejs.org/en/download/.
+1. Start WAMP, MAMP or similar that use mysql and apache. You also need an up to date Node version to run the project => https://nodejs.org/en/download/.
 2. Create a database in mysql named eddie-exam-shop-db.
 3. Go to the .env file in the server folder and change the values to match your data base configuration.
 4. Open a terminal and navigate to the server folder then type npm install.
