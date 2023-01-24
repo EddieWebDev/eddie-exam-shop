@@ -7,6 +7,8 @@ import {
   createOrdersTable,
   createOrderProductsTable,
   createCategoriesTable,
+/*   populateProducts,
+  populateCategories, */
 } from "./queries/createTables.js";
 
 export const pool = mysql
@@ -24,4 +26,6 @@ if (pool) {
   createOrdersTable();
   createOrderProductsTable();
   createCategoriesTable();
+ /*  populateProducts()
+  populateCategories() */
 }

@@ -7,14 +7,6 @@ import { CartProvider } from "./context/CartContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home/Home";
-/* import About from "./pages/About/About"; */
-/* import Product from "./pages/Product/Product"; */
-/* import Admin from "./pages/Admin/Admin"; */
-/* import Login from "./pages/Login/Login"; */
-/* import Categories from "./pages/Categories/Categories"; */
-/* import Category from "./pages/Category/Category"; */
-/* import Checkout from "./pages/Checkout/Checkout"; */
-/* import User from "./pages/User/User"; */
 import Cart from "./pages/Cart/Cart";
 const Admin = React.lazy(() => import("./pages/Admin/Admin"));
 const Categories = React.lazy(() => import("./pages/Categories/Categories"));
@@ -24,6 +16,9 @@ const Checkout = React.lazy(() => import("./pages/Checkout/Checkout"));
 const User = React.lazy(() => import("./pages/User/User"));
 const About = React.lazy(() => import("./pages/About/About"));
 const Login = React.lazy(() => import("./pages/Login/Login"));
+const CreateAccount = React.lazy(() =>
+  import("./pages/CreateAccount/CreateAccount")
+);
 
 function App() {
   const client = new QueryClient();
@@ -43,6 +38,14 @@ function App() {
                   element={
                     <React.Suspense fallback="Loading...">
                       <About />
+                    </React.Suspense>
+                  }
+                />
+                <Route
+                  path="/admin"
+                  element={
+                    <React.Suspense fallback="Loading...">
+                      <Admin />
                     </React.Suspense>
                   }
                 />
@@ -72,18 +75,18 @@ function App() {
                   }
                 />
                 <Route
-                  path="/product/:id"
+                  path="/createaccount"
                   element={
                     <React.Suspense fallback="Loading...">
-                      <Product />
+                      <CreateAccount />
                     </React.Suspense>
                   }
                 />
                 <Route
-                  path="/admin"
+                  path="/product/:id"
                   element={
                     <React.Suspense fallback="Loading...">
-                      <Admin />
+                      <Product />
                     </React.Suspense>
                   }
                 />

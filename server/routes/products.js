@@ -94,7 +94,7 @@ router.delete("/:id", authenticateAdminToken, async (req, res) => {
 });
 
 //Search a product by name
-router.get("/search/:searchword", async (req, res) => {
+router.get("/search/:searchword", authenticateAdminToken, async (req, res) => {
   const searchWord = req.params.searchword;
   const result = await searchProduct(searchWord);
   const topFiveResults = result.slice(0, 5);

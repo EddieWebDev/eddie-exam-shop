@@ -29,12 +29,10 @@ router.get("/:id", async (req, res) => {
 });
 
 //Create a user
-router.post("/", authenticateAdminToken, async (req, res) => {
+router.post("/", async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
 
   const hashedPassword = await bcrypt.hash(password, 10);
-
-  console.log(hashedPassword, "hashedpassword");
 
   const newUser = await createUser(firstname, lastname, email, hashedPassword);
 

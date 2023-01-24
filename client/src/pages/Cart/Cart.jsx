@@ -11,9 +11,11 @@ const Cart = () => {
   return (
     <section>
       <div>
-        <h3>Cart</h3>
+        <h2>Cart</h2>
         {total < 1 ? (
-          <div>Cart is empty</div>
+          <Link to="/categories">
+            <div className="my-4 text-2xl">Your cart is empty!</div>
+          </Link>
         ) : (
           <div>
             <CartTable />

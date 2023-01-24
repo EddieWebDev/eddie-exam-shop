@@ -58,7 +58,6 @@ router.post("/checktoken", (req, res) => {
 
 //Google login
 router.post("/google/login", async (req, res) => {
-  console.log("HALÅÅÅÅÅÅÅÅÅÅÅ");
   const { firstname, lastname, email, password } = req.body;
 
   const user = await getUserByEmail(email);
