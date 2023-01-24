@@ -8,18 +8,18 @@ import {
   deleteOrder,
 } from "../queries/orders.js";
 import { updateProductStock } from "../queries/products.js";
-import { authenticateAdminToken } from "../utils/jwtAuth.js";
+import { authenticateAdminToken, authenticateToken } from "../utils/jwtAuth.js";
 
 const router = express.Router();
 
 //Get all orders
-router.get("/", async (req, res) => {
+router.get("/", authenticateAdminToken, async (req, res) => {
   const orders = await getOrders();
   res.send(orders);
 });
 
 //Get an order
-router.get("/:id", async (req, res) => {
+router.get("/:id", authenticateAdminToken, async (req, res) => {
   const id = req.params.id;
   const order = await getOrder(id);
   if (!order) {
@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //Get a users orders
-router.get("/userorders/:id", async (req, res) => {
+router.get("/userorders/:id", authenticateToken, async (req, res) => {
   const id = req.params.id;
   const userOrders = await getUserOrders(id);
   if (!userOrders) {
@@ -39,7 +39,7 @@ router.get("/userorders/:id", async (req, res) => {
 });
 
 //Create an order
-router.post("/:id", async (req, res) => {
+router.post("/:id", authenticateToken, async (req, res) => {
   const user_id = req.params.id;
   const cart = req.body.cart;
   const total = req.body.total;

@@ -29,6 +29,7 @@ export const AddToCartButton = tw.button`
 
 export const TableButton = tw.button`
     w-[35px]
+    m-1
     p-2
     rounded
     shadow

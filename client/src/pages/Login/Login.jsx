@@ -4,6 +4,7 @@ import { LogoutButton } from "./components/LogoutButton";
 import { UserContext } from "../../context/UserContext";
 import { GoogleLogin } from "./components/googleLogin";
 import { LoginContainer } from "../../styles/styledLogin";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { user } = useContext(UserContext);
@@ -12,7 +13,7 @@ const Login = () => {
     <section>
       <div>
         <h2>{user ? "Logout" : "Login"}</h2>
-        <div>
+        <div className="text-center">
           <LoginContainer>
             {user ? (
               <LogoutButton />
@@ -22,6 +23,9 @@ const Login = () => {
                 <GoogleLogin />
               </div>
             )}
+            <Link to="/createaccount">
+              <div>New user?</div>
+            </Link>
           </LoginContainer>
         </div>
       </div>
