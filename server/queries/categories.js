@@ -1,5 +1,6 @@
 import { pool } from "../database.js";
 
+// Get categories
 export const getCategories = async () => {
   const [categories] = await pool.query(
     "SELECT * FROM categories ORDER BY category_name"
@@ -7,6 +8,7 @@ export const getCategories = async () => {
   return categories;
 };
 
+// Get category
 export const getCategory = async (id) => {
   const [category] = await pool.query(`SELECT * FROM categories WHERE id = ?`, [
     id,
@@ -14,6 +16,7 @@ export const getCategory = async (id) => {
   return category[0];
 };
 
+// Create category
 export const createCategory = async (category_name, category_img_url) => {
   const [result] = await pool.query(
     `INSERT INTO categories (category_name, category_img_url)
@@ -25,6 +28,7 @@ export const createCategory = async (category_name, category_img_url) => {
   return getCategory(id);
 };
 
+// Delete category
 export const deleteCategory = async (id) => {
   const [result] = await pool.query(
     `DELETE FROM categories WHERE id = ?

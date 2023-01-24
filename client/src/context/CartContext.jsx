@@ -28,6 +28,7 @@ export const CartProvider = ({ children }) => {
   // Add one to cart
   const addOneToCart = (id, productname, price, stock) => {
     const qty = getProductQty(id);
+
     if (qty < stock) {
       if (!qty) {
         setCartProducts([

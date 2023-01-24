@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 
+// Check if logged in
 export const authenticateToken = (req, res, next) => {
   const token = req.cookies.token;
 
@@ -16,6 +17,7 @@ export const authenticateToken = (req, res, next) => {
   }
 };
 
+// Check if logged in as admin
 export const authenticateAdminToken = (req, res, next) => {
   const token = req.cookies.token;
 

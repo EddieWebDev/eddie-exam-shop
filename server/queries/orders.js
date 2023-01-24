@@ -1,10 +1,12 @@
 import { pool } from "../database.js";
 
+// Get orders
 export const getOrders = async () => {
   const [orders] = await pool.query("SELECT * FROM orders");
   return orders;
 };
 
+// Get order
 export const getOrder = async (id) => {
   const [order] = await pool.query(
     `SELECT p.order_id, o.total, o.status, product_id, product_name, product_price, product_qty FROM orders o 
@@ -15,6 +17,7 @@ export const getOrder = async (id) => {
   return order;
 };
 
+// Get a users orders
 export const getUserOrders = async (id) => {
   const [userOrders] = await pool.query(
     `SELECT p.order_id, o.total, o.status, product_id, product_name, product_price, product_qty FROM orders o
@@ -38,6 +41,7 @@ export const getUserOrders = async (id) => {
   return ordersArray;
 };
 
+// Create order
 export const createOrder = async (
   user_id,
   cart,
@@ -69,6 +73,7 @@ export const createOrder = async (
   return getOrder(order_id);
 };
 
+// Update order status
 export const updateOrderStatus = async (status, id) => {
   await pool.query(
     `UPDATE orders SET status = ? WHERE id = ?
@@ -78,6 +83,7 @@ export const updateOrderStatus = async (status, id) => {
   return getOrder(id);
 };
 
+// Delete order
 export const deleteOrder = async (id) => {
   const [result] = await pool.query(
     `DELETE FROM orders WHERE id = ?

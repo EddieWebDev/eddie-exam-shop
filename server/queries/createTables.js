@@ -1,5 +1,7 @@
 import { pool } from "../database.js";
 
+// Use this to create tables and products in your db
+
 export const createUsersTable = async () => {
   const response = await pool.query(`
     CREATE TABLE IF NOT EXISTS users (
