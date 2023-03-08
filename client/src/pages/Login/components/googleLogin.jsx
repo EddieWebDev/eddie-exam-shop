@@ -22,8 +22,7 @@ export const GoogleLogin = () => {
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
-      client_id:
-        "223953263469-tn1aj7aac1rdqt022i3s4tt6823cfi3q.apps.googleusercontent.com",
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       callback: handleCallbackResponse,
     });
 
